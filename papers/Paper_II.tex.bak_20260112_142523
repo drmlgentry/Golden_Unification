@@ -1,0 +1,181 @@
+% Paper_II.tex — Mapping/encoding and scan methodology (repo-native, reproducible)
+% ============================================================================
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{titlesec}
+\usepackage{float}
+
+\geometry{margin=1in}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\title{\textbf{Golden Unification II: Encoding maps, anchoring conventions, and bounded scan methodology}}
+\author{Marvin Gentry\thanks{Independent researcher.}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper specifies the \emph{mapping layer} of the Golden Unification program: how observables are assigned
+finite integer descriptors, how gauge-like freedoms (anchors/offsets) are fixed by convention, and how bounded
+scans are performed and reported. The purpose of Paper~II is not to claim a dynamical origin of masses or
+mixing, but to define a reproducible, audit-friendly encoding pipeline that (i) can be executed as code,
+(ii) makes its degrees of freedom explicit, and (iii) enables disciplined diagnostics (Papers~III and VII)
+and preregistered falsifiability (Paper~VIII).
+\end{abstract}
+
+\section{Role of Paper II in the 1--9 chain}
+Paper~I motivates the program and sets standards for scientific claims: explicit definitions, transparent
+degrees of freedom, and reproducible computation. Paper~II provides the \emph{mechanical core} needed to make
+those standards enforceable: an encoding map and scan protocol that can be run, inspected, and independently
+reproduced.
+
+Downstream dependency is deliberate:
+\begin{itemize}
+\item \textbf{Paper~III} uses the scan protocol to generate mass-fit tables/figures with explicit multiplicity reporting.
+\item \textbf{Paper~IV--V} use the same mapping layer for adjacent structural tests (and must not silently change it).
+\item \textbf{Paper~VII--IX} reframe the same pipeline as disciplined diagnostics and preregistered falsifiability/extension.
+\end{itemize}
+
+Accordingly, Paper~II is written as a specification: if this mapping layer is unclear, nothing downstream can
+be considered scientifically stable.
+
+\section{Objects, observables, and inputs}
+\subsection{Observable list}
+Let $\mathcal{O}$ denote a fixed list of observables. In the mass-spectrum studies, $\mathcal{O}$ typically contains
+charged lepton masses, heavy quark masses (in a specified scheme/scale), and electroweak gauge boson masses.
+Each observable is indexed by $i\in\{1,\dots,|\mathcal{O}|\}$ with experimental input value $m^{\mathrm{exp}}_i$.
+
+\subsection{Data provenance and versioning}
+Any analysis must state:
+\begin{enumerate}
+\item the numerical input table (values and units),
+\item the source (e.g.\ PDG edition or specific fit),
+\item the scheme/scale where applicable (quark masses),
+\item and the commit hash or tagged release that produced the outputs.
+\end{enumerate}
+This is not bureaucracy: without it, apparent ``structure'' can be an artifact of silent input drift.
+
+\section{Encoding map}
+\subsection{Descriptor space}
+Each observable $i$ is assigned a finite integer descriptor
+\begin{equation}
+x_i \in \mathbb{Z}^d,
+\end{equation}
+with small fixed dimension $d$ (e.g.\ $d=3$ and $x=(a,b,c)$). The descriptor is the \emph{candidate explanation token}:
+we test whether simple integer structure can \emph{encode} the spectrum more compactly than null alternatives.
+
+\subsection{Global map from descriptor to prediction}
+A fixed global map produces a predicted value,
+\begin{equation}
+m^{\mathrm{fit}}_i = m_{\mathrm{fit}}(x_i;\theta),
+\end{equation}
+where $\theta$ denotes global parameters shared across all observables in the analysis (e.g.\ scale factors,
+fixed constants, or discrete conventions). Crucially:
+\begin{itemize}
+\item $\theta$ must be explicitly stated and held fixed across the full set unless a new analysis is declared.
+\item the map form $m_{\mathrm{fit}}(\cdot)$ must be stable across papers that claim continuity.
+\end{itemize}
+
+\subsection{Residual definition}
+To compare across many decades of masses, we use a log-residual (or preregister an alternative monotone choice):
+\begin{equation}
+\epsilon_i(x) \equiv \log\!\left(\frac{m_{\mathrm{fit}}(x;\theta)}{m^{\mathrm{exp}}_i}\right).
+\end{equation}
+For a given observable $i$, a descriptor $x$ is called an \emph{in-tolerance solution} if
+\begin{equation}
+|\epsilon_i(x)| \le \tau,
+\end{equation}
+with tolerance $\tau>0$ specified \emph{before} running the scan.
+
+\section{Anchoring and gauge-like freedoms}
+Many encodings admit an additive or offset-like ambiguity: shifting all descriptors by a common transformation
+can leave the relative structure unchanged. This is not a bug; it is a gauge-like freedom.
+
+\subsection{Reference anchoring rule}
+We fix gauge freedom by selecting a reference observable (often the electron) and declaring its descriptor
+\begin{equation}
+x_{\mathrm{ref}} \equiv x_e = (a_e,b_e,c_e)
+\end{equation}
+by convention. This anchor is \emph{not tuned} to improve outcomes; it is part of the definition of the analysis.
+
+\subsection{Reporting requirement}
+Any paper that presents results derived from anchored scans must report:
+\begin{itemize}
+\item the chosen reference observable,
+\item the exact anchor descriptor,
+\item and any discrete class labels (e.g.\ $q$-classes) and their equivalence relation (if used).
+\end{itemize}
+If multiple anchor conventions are explored, each is a separate analysis and must be shown side-by-side.
+
+\section{Bounded scan protocol}
+\subsection{Scan region}
+All searches occur within a finite preregistered region
+\begin{equation}
+x \in \mathcal{B}\subset\mathbb{Z}^d,
+\end{equation}
+typically specified by box bounds such as $a\in[a_{\min},a_{\max}]$ etc.
+Expanding $\mathcal{B}$ is not ``more compute''; it is a new analysis and must be labeled as such.
+
+\subsection{Per-observable optimization target}
+For each observable $i$ we define:
+\begin{itemize}
+\item $\epsilon_{i,\min} \equiv \min_{x\in\mathcal{B}} |\epsilon_i(x)|$,
+\item $N_i(\tau) \equiv |\{x\in\mathcal{B}: |\epsilon_i(x)|\le \tau\}|$.
+\end{itemize}
+The second quantity is essential: a best fit without multiplicity is scientifically weak. A ``great'' residual
+is not impressive if thousands of descriptors fit equally well.
+
+\subsection{Deduplication and equivalence classes (optional)}
+If the encoding has a symmetry or redundancy (e.g.\ $x\sim x'$ by a discrete phase class), report both:
+\begin{itemize}
+\item raw counts $N_i(\tau)$, and
+\item deduplicated counts $N^{(\mathrm{dedup})}_i(\tau)$ under the declared equivalence relation.
+\end{itemize}
+The equivalence relation must be defined in the text (not only in code).
+
+\section{Outputs and repository contract}
+To keep downstream papers stable, the mapping layer produces standardized artifacts.
+
+\subsection{Minimum outputs}
+A compliant run should generate:
+\begin{enumerate}
+\item a table of best fits (per observable: $m^{\mathrm{exp}}_i$, $m^{\mathrm{fit}}_i$, descriptor $x_i$, residual $\epsilon_i$),
+\item a multiplicity table (per observable: $N_i(\tau)$, $\epsilon_{i,\min}$, and notes on uniqueness),
+\item and any figures used by the paper (PDFs for \LaTeX\ inclusion).
+\end{enumerate}
+
+\subsection{Build discipline}
+Every paper in the series should compile from the \texttt{papers/} directory using a single command, and
+all autogenerated \texttt{shared/} tables/figures should be reproducible from scripts stored in the repo.
+This enforces that ``the paper'' and ``the code'' are not divergent narratives.
+
+\section{Limits of interpretation}
+This paper defines an encoding and scan protocol; it does not prove that the encoding has physical meaning.
+Three interpretation cautions are mandatory:
+\begin{enumerate}
+\item \textbf{Encoding is not mechanism.} A compact description can exist without being dynamical.
+\item \textbf{Multiplicity is the first diagnostic.} Without separation from null multiplicities, best fits are not evidence.
+\item \textbf{Scheme/scale dependence matters.} For running quantities, stability across reasonable inputs is required.
+\end{enumerate}
+These cautions are not hedges; they are the scientific firewall that keeps subsequent claims honest.
+
+\section{Conclusion}
+Paper~II makes the program executable. It specifies the descriptor space, residual definition, anchoring conventions,
+bounded scan region, and multiplicity reporting that all downstream papers must respect. With this contract in place,
+Papers~III and VII can ask a sharply defined question: \emph{does the spectrum exhibit nontrivial low-description-length
+structure that survives null ensembles, multiplicity diagnostics, and robustness checks?}
+
+\bibliographystyle{plain}
+% \bibliography{../shared/references}
+
+\end{document}

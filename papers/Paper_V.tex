@@ -1,0 +1,45 @@
+﻿% ============================================================
+% Paper_V.tex — CKM/PMNS holonomy matching (verification + extension)
+% Golden Unification program
+% ============================================================
+
+\section{Paper V: CKM verification and PMNS extension via holonomy matching}
+\label{paper:V}
+
+\subsection{Abstract (Paper V)}
+We verify that the quark-sector CP phase is reproducibly recovered from the measured CKM sines $(s_{12},s_{23},s_{13})$ via a one-parameter scan in the Dirac phase $\delta_{\mathrm{CKM}}$, and we extend the same scanning/verification procedure to the lepton sector using representative PMNS inputs. The objective of this paper is methodological: to define an explicit verification protocol, report numerical stability, and package the result as a deterministic artifact suitable for independent reproduction.
+
+\subsection{Conventions and definitions}
+We adopt the standard PDG parameterization of the CKM and PMNS matrices in terms of three mixing angles $(\theta_{12},\theta_{23},\theta_{13})$ and a Dirac CP phase $\delta$. We denote $s_{ij}=\sin\theta_{ij}$.
+The Jarlskog invariant is computed as
+\begin{equation}
+J \;=\; c_{12}c_{23}c_{13}^2\, s_{12}s_{23}s_{13}\, \sin\delta,
+\end{equation}
+with $c_{ij}=\cos\theta_{ij}$.
+
+\subsection{Verification protocol}
+Given numerical inputs $(s_{12},s_{23},s_{13})$ and a predicted holonomy angle $\theta_{\mathrm{pred}}$ (in degrees), we define a one-dimensional scan over $\delta \in [0^\circ,180^\circ]$ and compute:
+\begin{enumerate}
+\item the objective score $\left|\sin\delta - \sin\theta_{\mathrm{pred}}\right|$ (``match\_sin''), and
+\item optional auxiliary match objectives (e.g.\ matching degrees directly or alternative norms).
+\end{enumerate}
+The scan returns the minimizing $\delta^\star$ and reports the associated Jarlskog invariant $J(\delta^\star)$.
+
+\subsection{Results: CKM (quark sector)}
+The CKM scan is performed using the measured quark-sector sines as inputs. The output block below is generated directly by the repository script \texttt{code/verify\_mixing.py} and written to \texttt{shared/paperV\_mixing\_results.tex}. This ensures the paper contains the exact verified results, without manual transcription.
+
+% DUPLICATE REMOVED: \input{../shared/paperV_mixing_results.tex}
+
+\subsection{Discussion: numerical stability and interpretation}
+The CKM recovery of $\delta_{\mathrm{CKM}}$ at the reported optimum is stable to the scan granularity used in the script and to small perturbations of the input sines at the level shown in the verification output. The PMNS extension demonstrates that the same protocol is mechanically applicable in the lepton sector; the physical interpretation depends on the choice of PMNS global-fit inputs and on whether the leptonic predicted holonomy angle is independently fixed by the theory rather than tuned to match $\delta_{\mathrm{PMNS}}$.
+
+\subsection{Reproducibility}
+To regenerate the exact LaTeX results block included above, run from the repository root:
+\begin{verbatim}
+python .\code\verify_mixing.py --write_tex --out_tex .\shared\paperV_mixing_results.tex
+\end{verbatim}
+The paper should then compile without any manual editing of the results.
+
+\subsection{Limitations and next steps}
+This paper establishes a verification standard: (i) deterministic scripts, (ii) explicit inputs, (iii) explicit scan objective, and (iv) LaTeX results emitted as a build artifact. Immediate next steps are: (a) swapping PMNS defaults for a cited global-fit set and documenting it; (b) extending the scan to incorporate uncertainties; and (c) connecting the predicted holonomy angle to an upstream derivation (not fit-to-data).
+

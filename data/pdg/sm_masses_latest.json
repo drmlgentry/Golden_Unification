@@ -1,0 +1,153 @@
+{
+  "source": {
+    "url": "https://pdgweb.lbl.gov/2025/mcdata/mass_width_2025.txt",
+    "year": 2025
+  },
+  "generated_at_utc": "2026-01-13T06:20:19Z",
+  "entries": {
+    "electron": {
+      "key": "electron",
+      "pdg_name": "e                   -",
+      "mcid_1": 11,
+      "mass_gev": 0.00051099895,
+      "mass_err_plus_gev": 1.5e-13,
+      "mass_err_minus_gev": -1.5e-13,
+      "width_gev": 0.0,
+      "width_err_plus_gev": 0.0,
+      "width_err_minus_gev": -0.0,
+      "notes": "charged lepton"
+    },
+    "muon": {
+      "key": "muon",
+      "pdg_name": "mu                  -",
+      "mcid_1": 13,
+      "mass_gev": 0.1056583755,
+      "mass_err_plus_gev": 2.3e-09,
+      "mass_err_minus_gev": -2.3e-09,
+      "width_gev": 2.9959836e-19,
+      "width_err_plus_gev": 3e-25,
+      "width_err_minus_gev": -3e-25,
+      "notes": "charged lepton"
+    },
+    "tau": {
+      "key": "tau",
+      "pdg_name": "tau                 -",
+      "mcid_1": 15,
+      "mass_gev": 1.77693,
+      "mass_err_plus_gev": 9e-05,
+      "mass_err_minus_gev": -9e-05,
+      "width_gev": 2.267e-12,
+      "width_err_plus_gev": 4e-15,
+      "width_err_minus_gev": -4e-15,
+      "notes": "charged lepton"
+    },
+    "u_quark": {
+      "key": "u_quark",
+      "pdg_name": "Upsilon(2)(1D)      0",
+      "mcid_1": 20555,
+      "mass_gev": 10.1637,
+      "mass_err_plus_gev": 0.0014,
+      "mass_err_minus_gev": -0.0014,
+      "width_gev": null,
+      "width_err_plus_gev": null,
+      "width_err_minus_gev": null,
+      "notes": "quark mass is scheme/scale dependent"
+    },
+    "d_quark": {
+      "key": "d_quark",
+      "pdg_name": "Delta(1232)  -,0,+,++",
+      "mcid_1": 1114,
+      "mass_gev": 1.232,
+      "mass_err_plus_gev": 0.002,
+      "mass_err_minus_gev": -0.002,
+      "width_gev": 0.117,
+      "width_err_plus_gev": 0.003,
+      "width_err_minus_gev": -0.003,
+      "notes": "quark mass is scheme/scale dependent"
+    },
+    "s_quark": {
+      "key": "s_quark",
+      "pdg_name": "Sigma(1660)     -,0,+",
+      "mcid_1": 13112,
+      "mass_gev": 1.66,
+      "mass_err_plus_gev": 0.02,
+      "mass_err_minus_gev": -0.02,
+      "width_gev": 0.2,
+      "width_err_plus_gev": 0.1,
+      "width_err_minus_gev": -0.1,
+      "notes": "quark mass is scheme/scale dependent"
+    },
+    "c_quark": {
+      "key": "c_quark",
+      "pdg_name": "chi(c2)(3930)       0",
+      "mcid_1": 100445,
+      "mass_gev": 3.9225,
+      "mass_err_plus_gev": 0.001,
+      "mass_err_minus_gev": -0.001,
+      "width_gev": 0.0352,
+      "width_err_plus_gev": 0.0022,
+      "width_err_minus_gev": -0.0022,
+      "notes": "quark mass is scheme/scale dependent"
+    },
+    "b_quark": {
+      "key": "b_quark",
+      "pdg_name": "b(1)(1235)        0,+",
+      "mcid_1": 10113,
+      "mass_gev": 1.2295,
+      "mass_err_plus_gev": 0.0032,
+      "mass_err_minus_gev": -0.0032,
+      "width_gev": 0.142,
+      "width_err_plus_gev": 0.009,
+      "width_err_minus_gev": -0.009,
+      "notes": "quark mass is scheme/scale dependent"
+    },
+    "t_quark": {
+      "key": "t_quark",
+      "pdg_name": "t                +2/3",
+      "mcid_1": 6,
+      "mass_gev": 172.56,
+      "mass_err_plus_gev": 0.31,
+      "mass_err_minus_gev": -0.31,
+      "width_gev": 1.42,
+      "width_err_plus_gev": 0.19,
+      "width_err_minus_gev": -0.15,
+      "notes": "quark mass is scheme/scale dependent"
+    },
+    "W_boson": {
+      "key": "W_boson",
+      "pdg_name": "W                   +",
+      "mcid_1": 24,
+      "mass_gev": 80.369,
+      "mass_err_plus_gev": 0.013,
+      "mass_err_minus_gev": -0.013,
+      "width_gev": 2.14,
+      "width_err_plus_gev": 0.05,
+      "width_err_minus_gev": -0.05,
+      "notes": "W boson"
+    },
+    "Z_boson": {
+      "key": "Z_boson",
+      "pdg_name": "Z                   0",
+      "mcid_1": 23,
+      "mass_gev": 91.188,
+      "mass_err_plus_gev": 0.002,
+      "mass_err_minus_gev": -0.002,
+      "width_gev": 2.4955,
+      "width_err_plus_gev": 0.0023,
+      "width_err_minus_gev": -0.0023,
+      "notes": "Z boson"
+    },
+    "higgs": {
+      "key": "higgs",
+      "pdg_name": "H                   0",
+      "mcid_1": 25,
+      "mass_gev": 125.2,
+      "mass_err_plus_gev": 0.11,
+      "mass_err_minus_gev": -0.11,
+      "width_gev": 0.0037,
+      "width_err_plus_gev": 0.0019,
+      "width_err_minus_gev": -0.0014,
+      "notes": "Higgs boson"
+    }
+  }
+}

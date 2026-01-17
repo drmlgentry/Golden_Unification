@@ -1,0 +1,148 @@
+# rx_replace_06d_and_align_builds.ps1
+# Overwrite papers/sections/06d_origami_inversion_holonomy.tex with a clean version,
+# optionally add it to CORE_MASTER.tex (so MASTER and CORE_MASTER include the same 06d package),
+# then build both.
+
+$ErrorActionPreference = "Stop"
+
+$root   = (Get-Location).Path
+$papers = Join-Path $root "papers"
+$secDir = Join-Path $papers "sections"
+
+if (!(Test-Path $secDir)) {
+  throw "Missing directory: $secDir"
+}
+
+$texPath = Join-Path $secDir "06d_origami_inversion_holonomy.tex"
+
+@'
+% ============================================================
+% sections/06d_origami_inversion_holonomy.tex
+% Non-Abelian holonomy toy model for an inversion ("pop-through")
+% ============================================================
+
+\section{Origami inversion as a non-Abelian holonomy toy model}
+\label{sec:06d_origami_inversion_holonomy}
+
+\paragraph{Purpose and scope.}
+This section provides a controlled toy model for the intuitive ``pop-through'' (inversion) move:
+a discrete change in an internal frame assignment around a closed cycle. The point is not to
+claim a microscopic gauge theory, but to express the transformation using standard, rigorous
+language---holonomy and Wilson loops---so that later extensions can be benchmarked against
+established frameworks.
+
+\subsection{Setup: a closed loop and a frame-valued connection}
+Let $\mathcal{C}$ be a closed cycle (a loop) in the configuration/parameter space relevant to the
+protocol under study. Choose a compact Lie group $G$ (e.g.\ $U(1)$ for an Abelian toy model or
+$SU(2)$ for a minimal non-Abelian toy model), and let
+$A$ be a $\mathfrak{g}$-valued connection one-form on $\mathcal{C}$.
+
+The associated holonomy around $\gamma:\,[0,1]\to \mathcal{C}$ with $\gamma(0)=\gamma(1)$ is
+\begin{equation}
+U[\gamma] \;\equiv\; \mathcal{P}\exp\!\left(i\oint_{\gamma} A\right)\in G,
+\label{eq:06d_holonomy_def}
+\end{equation}
+where $\mathcal{P}$ denotes path ordering.
+
+The corresponding Wilson loop in a representation $\rho$ of $G$ is
+\begin{equation}
+W_{\rho}[\gamma] \;\equiv\; \mathrm{Tr}\,\rho\!\left(U[\gamma]\right),
+\label{eq:06d_wilson_loop_def}
+\end{equation}
+which is gauge invariant.
+
+\subsection{Abelian limit and why the non-Abelian model subsumes it}
+If $G=U(1)$, then $\mathcal{P}$ is unnecessary and the holonomy reduces to a phase,
+\begin{equation}
+U_{U(1)}[\gamma] \;=\; \exp\!\left(i\oint_{\gamma} A\right),
+\label{eq:06d_abelian_phase}
+\end{equation}
+so the Abelian construction is recovered as the commutative special case of
+Eq.~\eqref{eq:06d_holonomy_def}.
+
+In this sense, the non-Abelian formulation \emph{subsumes} the Abelian toy model:
+all Abelian statements arise by restricting to commuting connections (or projecting to an
+Abelian subgroup).
+
+\subsection{A discrete ``pop-through'' as a holonomy class}
+The ``inversion'' move is modeled as a discrete change in the holonomy class of the loop:
+rather than tracking a continuously varying parameter, we track whether the protocol induces a
+nontrivial group element $U[\gamma]$ (or its conjugacy class).
+
+\paragraph{Conjugacy-class data.}
+In a non-Abelian setting, the physically meaningful invariant of holonomy is not $U[\gamma]$
+itself but its conjugacy class:
+\begin{equation}
+U[\gamma]\sim g\,U[\gamma]\,g^{-1}.
+\label{eq:06d_conjugacy}
+\end{equation}
+Thus, a ``pop-through'' can be captured by a jump between conjugacy classes (or between
+distinguished representatives) under a discrete re-identification of frames.
+
+\subsection{Curvature/flux interpretation (Stokes-type intuition)}
+When $\gamma=\partial \Sigma$ bounds a surface $\Sigma$ in an ambient space where $A$ extends,
+one can interpret holonomy as a curvature/flux measure. In Abelian language,
+\begin{equation}
+\oint_{\gamma} A \;=\; \int_{\Sigma} F, \qquad F=dA,
+\label{eq:06d_stokes_abelian}
+\end{equation}
+so the phase is controlled by the integrated curvature/field strength through $\Sigma$.
+
+In the non-Abelian setting, the analogous statement is more subtle (surface ordering is needed),
+but the operational interpretation remains: \emph{holonomy detects the integrated curvature content
+enclosed by the loop}. This is precisely the correct formal device for modeling a discrete,
+topological or frame-relabeling effect.
+
+\subsection{Connection to discrete symmetry and an $\mathsf{A}_5$-type modulus}
+A discrete symmetry such as $\mathsf{A}_5$ can enter at the level of \emph{allowed holonomy classes}
+or \emph{allowed frame identifications}. Concretely, one may posit that the protocol restricts
+$U[\gamma]$ to a finite subset of conjugacy classes compatible with an $\mathsf{A}_5$-structured
+identification (e.g.\ dodecahedral/icosahedral residual structure). In that case, the modulus-like
+parameter is not a continuous angle but a discrete (or discretized) holonomy datum, and the
+inversion corresponds to selecting a different admissible class.
+
+\paragraph{What is claimed here.}
+This section claims only the following:
+\begin{enumerate}
+\item The inversion can be represented rigorously as a holonomy/Wilson-loop observable.
+\item The non-Abelian formulation automatically contains the Abelian phase model as a special case.
+\item If an $\mathsf{A}_5$ (dodecahedral) identification is present, it can be imposed as a
+constraint on admissible holonomy classes.
+\end{enumerate}
+Any phenomenological matching (e.g.\ to CKM/PMNS phases or to lattice-encoded logarithmic structure)
+must be treated as an additional hypothesis and tested with the same reproducibility and null
+discipline used elsewhere in this manuscript.
+'@ | Set-Content -Encoding UTF8 $texPath
+
+Write-Host "Wrote clean file: $texPath"
+
+# OPTIONAL: align CORE_MASTER with MASTER by including 06d holonomy after figB
+$core = Join-Path $papers "CORE_MASTER.tex"
+$needleFigB = "\input{sections/06d_A5_axes_figB.tex}"
+$insLine    = "\input{sections/06d_origami_inversion_holonomy.tex}"
+
+$coreText = Get-Content $core -Raw
+if ($coreText -notmatch [regex]::Escape($insLine)) {
+  if ($coreText -match [regex]::Escape($needleFigB)) {
+    $coreText = $coreText -replace [regex]::Escape($needleFigB),
+      ($needleFigB + "`r`n" + $insLine)
+    Set-Content -Encoding UTF8 $core $coreText
+    Write-Host "Inserted into CORE_MASTER.tex: $insLine"
+  } else {
+    Write-Host "WARNING: Could not find figB include in CORE_MASTER.tex; did not insert holonomy include."
+  }
+} else {
+  Write-Host "CORE_MASTER.tex already includes holonomy; no change."
+}
+
+Push-Location $papers
+try {
+  Write-Host "Compiling CORE_MASTER.tex..."
+  & pdflatex -interaction=nonstopmode CORE_MASTER.tex | Out-Host
+  Write-Host "Compiling MASTER.tex..."
+  & pdflatex -interaction=nonstopmode MASTER.tex | Out-Host
+} finally {
+  Pop-Location
+}
+
+Write-Host "DONE."

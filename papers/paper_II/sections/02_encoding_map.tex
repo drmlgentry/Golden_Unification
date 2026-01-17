@@ -1,0 +1,72 @@
+﻿\section{Encoding map}
+\label{sec:encoding_map}
+
+The objective of this paper is not to propose a model of particle masses or mixing, but to define a
+\emph{deterministic and auditable encoding} that maps measured observables into a discrete
+representation suitable for bounded scans and reproducible diagnostics.
+This section specifies that encoding in full, independent of any subsequent fitting or interpretation.
+
+\subsection{Domain and codomain}
+
+Let $x$ denote a positive-valued physical observable (e.g.\ a fermion mass or mixing-related input)
+expressed in fixed physical units.
+The encoding map is a function
+\begin{equation}
+\mathcal{E} : x \;\mapsto\; \Delta(x),
+\end{equation}
+where $\Delta(x)$ is a real-valued coordinate in logarithmic space defined relative to a chosen anchor
+(Section~\ref{sec:anchoring_conventions}).
+
+The codomain of $\mathcal{E}$ is $\mathbb{R}$, but all subsequent analyses restrict attention to
+integer- or half-integer neighborhoods under explicitly stated bounds.
+No discretization is performed at the encoding stage itself.
+
+\subsection{Definition of the logarithmic coordinate}
+
+For a fixed anchor scale $x_0$, we define
+\begin{equation}
+\Delta(x) \;\equiv\; \frac{\log(x/x_0)}{\log \lambda},
+\label{eq:encoding_def}
+\end{equation}
+where $\lambda>1$ is a fixed scaling constant held constant across all scans in the paper series.
+Equation~\eqref{eq:encoding_def} is a change of coordinates; it introduces no assumptions about
+quantization or dynamics.
+
+Two points are emphasized:
+\begin{enumerate}
+\item The encoding is continuous. Integer structure, when observed, emerges only after scanning and
+comparison.
+\item All dependence on physical units is confined to the choice of anchor $x_0$.
+\end{enumerate}
+
+\subsection{Invertibility and invariance}
+
+The map $\mathcal{E}$ is invertible on its domain:
+\begin{equation}
+x \;=\; x_0\,\lambda^{\Delta(x)}.
+\end{equation}
+Consequently, no information is lost at the encoding stage.
+Any failure or ambiguity observed in later sections is therefore attributable to the scan protocol or
+the imposed bounds, not to the encoding itself.
+
+Ratios of observables satisfy
+\begin{equation}
+\Delta(x_1)-\Delta(x_2) \;=\; \frac{\log(x_1/x_2)}{\log \lambda},
+\end{equation}
+which is independent of the anchor choice.
+This invariance is exploited in later diagnostic tests but is not required for the definition of the map.
+
+\subsection{Separation from fitting and interpretation}
+
+The encoding map defined here is applied uniformly to all inputs prior to any fitting,
+integer assignment, or hypothesis testing.
+In particular:
+\begin{itemize}
+\item No rounding or snapping to integer values occurs at this stage.
+\item No preference is assigned to any specific integer or lattice structure.
+\item No interpretation is attached to $\Delta(x)$ beyond its role as a coordinate.
+\end{itemize}
+
+This strict separation ensures that the encoding layer cannot be tuned to improve downstream outcomes.
+All degrees of freedom associated with scanning, matching, and evaluation are introduced explicitly and
+independently in Section~\ref{sec:bounded_scan_protocol}.

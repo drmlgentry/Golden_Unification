@@ -1,0 +1,39 @@
+﻿\section{Reproducibility protocol and scan definition}
+\label{sec:methods}
+
+This section defines the scan procedure precisely enough that an independent reader can reproduce every reported lattice assignment.
+
+\subsection{Anchoring convention}
+The map in Eq.~\eqref{eq:mass_law} has an overall discrete scaling freedom: shifting $q\mapsto q+4k$ multiplies $m$ by $\golden^k$. To fix this gauge-like freedom, we impose an anchoring condition by assigning the electron a reference triple $(a_e,b_e,c_e)$ such that
+\begin{equation}
+q(a_e,b_e,c_e)=0.
+\end{equation}
+All reported assignments for other particles are relative to this fixed reference.
+
+\subsection{Objective function}
+Given an experimental mass $m_{\mathrm{exp}}$, and a candidate triple $(a,b,c)$ producing $m_{\mathrm{fit}}(a,b,c)=m_e\,\golden^{q(a,b,c)/4}$, we define the logarithmic error
+\begin{equation}
+\epsilon(a,b,c)\equiv\left|\log_{\golden}\!\left(\frac{m_{\mathrm{fit}}(a,b,c)}{m_{\mathrm{exp}}}\right)\right|.
+\end{equation}
+This is equivalent to an absolute error in the $\ell$-coordinate. For a fixed tolerance $\epsilon\le \epsilon_{\max}$, we retain \emph{all} solutions.
+
+\subsection{Search domain and reporting}
+To avoid post-hoc tuning, the scan domain is declared explicitly as bounded boxes
+\begin{equation}
+a\in[a_{\min},a_{\max}],\qquad b\in[b_{\min},b_{\max}],\qquad c\in[c_{\min},c_{\max}],
+\end{equation}
+and the output is reported as:
+(i) the best-fit triple (minimum $\epsilon$),
+(ii) the number of solutions within tolerance,
+and (iii) the number of \emph{distinct} $q$ values within tolerance (deduplication by $q$), since multiple triples can correspond to the same predicted mass.
+
+\subsection{Repository artifacts}
+All scan results appearing in Paper~III are generated from deterministic scripts in \texttt{code/} and emitted as LaTeX blocks under \texttt{shared/}. The paper includes these blocks via \texttt{\\verb|\\| input} to eliminate copy/paste errors.
+
+Concretely, the results tables should be produced as \texttt{shared/paperIII\_results.tex} and then included using:
+\begin{verbatim}
+% DUPLICATE REMOVED: % DUPLICATE REMOVED: \\input{../shared/paperIII_results.tex}
+\end{verbatim}
+This convention ensures that: (i) a single command regenerates all numbers, (ii) the manuscript remains build-clean, and (iii) changes to inputs propagate transparently.
+
+

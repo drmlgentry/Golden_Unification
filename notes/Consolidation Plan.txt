@@ -1,0 +1,147 @@
+From this moment forward:
+
+Only full papers go in papers/
+
+Only modular inputs go in shared/
+
+Only verification lives in code/
+
+Nothing else writes LaTeX except scripts explicitly designed to do so
+
+Concretely:
+
+Folder	What belongs there
+papers/	Paper_I.tex … Paper_VIII.tex (full documents or full sections)
+shared/	macros.tex, references.bib, paperIII_results.tex, paperV_mixing_results.tex
+code/	Python / PS scripts that produce results
+math/	derivations you are not yet ready to publish
+notes/	planning, consolidation ideas, submission strategy
+
+🌟 Anchor A — Flavor Geometry Core (JHEP-class)
+
+Consolidated from:
+
+Paper III (anchored mass lattice)
+
+Paper V (CKM + PMNS holonomy, verified)
+
+This paper does:
+
+defines the lattice cleanly,
+
+proves stability/uniqueness where it exists,
+
+connects directly to CKM & PMNS data,
+
+includes code-backed verification.
+
+This is your technical flagship.
+
+
+🌟 Anchor B — Geometric Interpretation & Extensions (EPJC-class)
+
+Consolidated from:
+
+Paper IV (geometric interpretation)
+
+Paper VI (extensions / sensitivity / limitations)
+
+This paper does:
+
+interprets without overclaiming,
+
+explains why the structure is nontrivial,
+
+addresses degeneracy honestly,
+
+frames the result as empirical geometry.
+
+This is where skeptics feel respected.
+
+
+🌟 Anchor C — Cross-Scale Structure (EPJC or CQG-class)
+
+Consolidated from:
+
+Paper VII (gravity & cosmology)
+
+supported by Paper VIII (scope & falsifiability)
+
+This paper does:
+
+shows consistency across scales,
+
+draws a hard line between observation and speculation,
+
+uses VIII’s falsifiability logic explicitly.
+
+This is optional for first wave submission — important but not urgent.
+
+🛰 Satellites (kept as standalone or notes)
+
+Paper I (historical / exploratory)
+
+Paper II (early structure)
+
+Paper VIII (synthesis & falsifiability — can remain standalone or be merged)
+
+These increase credibility but do not need to be submitted first.
+
+
+
+
+q = 3a + 8b + 15c + 24 d + 35e
+
+
+
+
+Your paper currently does four legitimate things:
+
+Identifies discrete regularities in fermion mass ratios and mixing data
+
+Shows these regularities are non-generic (via null tests and degeneracy accounting)
+
+Demonstrates that phase-sensitive observables (CKM/PMNS) admit a holonomy interpretation
+
+Motivates 
+𝐴
+5
+A
+5
+	​
+
+-type discrete symmetry as a natural organizing principle
+
+What it does not yet do (and should not pretend to do):
+
+It does not construct modular forms of weight 
+𝑘
+k
+
+It does not specify a modulus 
+𝜏
+τ and its stabilisation dynamics
+
+It does not assign SM fields to irreducible 
+𝐴
+5
+A
+5
+	​
+
+ representations
+
+It does not derive Yukawa textures from modular invariance
+
+That is exactly why the current paper is strong: it stays falsifiable and disciplined.
+
+So the correct positioning is:
+
+This paper constrains the space of viable 
+𝐴
+5
+A
+5
+	​
+
+ modular flavor models without committing to a specific ultraviolet realization.

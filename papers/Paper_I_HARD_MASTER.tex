@@ -1,0 +1,58 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+\usepackage{placeins}
+
+% Load your project macros, but DO NOT rely on any custom input wrappers.
+\input{../shared/macros.tex}
+
+% A raw-input helper that bypasses any redefined \input or custom wrappers.
+\makeatletter
+\newcommand{\RawInput}[1]{\@@input #1\relax}
+\makeatother
+
+\title{Discrete Logarithmic Structure in Standard Model Flavor Data}
+\author{Marvin Gentry}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We examine Standard Model flavor observables in logarithmic coordinates under a fixed anchoring
+convention and report a reproducible discrete organization: fermion masses and mixing parameters
+cluster near integer-lattice locations within bounded residuals. The emphasis is empirical and
+auditable: all numerical outputs are generated deterministically and validated against explicit
+null hypotheses. Interpretation is sharply delimited; methodological implementation details are
+externalized to a companion methods paper.
+\end{abstract}
+
+% ---- Paper I include stack (RAW, cannot be skipped by wrappers) ----
+\RawInput{sections/01_log_structure.tex}
+\RawInput{sections/02_lattice.tex}
+\RawInput{sections/03_results.tex}
+\RawInput{sections/04_integer_lattice_fits.tex}
+\RawInput{sections/04_discussion.tex}
+
+\RawInput{sections/05_mixing_observables.tex}
+\RawInput{sections/06_ckm_verification.tex}
+\RawInput{sections/06_pmns_extension.tex}
+\RawInput{sections/06_holonomy_mixing.tex}
+\RawInput{sections/06a_formal_verification.tex}
+\RawInput{sections/06b_results_summary.tex}
+
+\RawInput{sections/07_predictions.tex}
+\RawInput{sections/08_falsifiability.tex}
+\RawInput{sections/09_null_hypotheses.tex}
+\RawInput{sections/10_null_tests.tex}
+
+\bibliographystyle{unsrt}
+\bibliography{../shared/references}
+
+\end{document}

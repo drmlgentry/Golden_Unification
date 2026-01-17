@@ -1,0 +1,31 @@
+% --- audited results artifact (include-once guarded to prevent input recursion) ---
+\makeatletter
+\@ifundefined{GPP@artifact@loaded}{%
+  \gdef\GPP@artifact@loaded{1}%
+  \makeatother
+  \InputIfFileExists{../shared/paperIII_results.tex}{%
+    \typeout{GPP_ARTIFACT:FOUND ../shared/paperIII_results.tex (structure suppressed)}%
+    \begingroup
+      % suppress labels + sectioning to avoid collisions
+      \let\orig@label\label
+      \renewcommand{\label}[1]{}%
+      \let\orig@section\section
+      \let\orig@subsection\subsection
+      \let\orig@subsubsection\subsubsection
+      \renewcommand{\section}[1]{}%
+      \renewcommand{\subsection}[1]{}%
+      \renewcommand{\subsubsection}[1]{}%
+      \input{../shared/paperIII_results.tex}%
+      \let\label\orig@label
+      \let\section\orig@section
+      \let\subsection\orig@subsection
+      \let\subsubsection\orig@subsubsection
+    \endgroup
+  }{%
+    \typeout{GPP_ARTIFACT:MISSING ../shared/paperIII_results.tex}%
+    \noindent\emph{[Audited results artifact not found at \texttt{../shared/paperIII\_results.tex}.]}%
+  }%
+}{%
+  \makeatother
+  \typeout{GPP_ARTIFACT:SKIP recursive include of ../shared/paperIII_results.tex}%
+}%

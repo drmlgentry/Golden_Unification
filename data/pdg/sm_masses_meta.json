@@ -1,0 +1,29 @@
+{
+  "generated_at_utc": "2026-01-13T06:20:19Z",
+  "input_file": "data\\pdg\\mass_width_latest.json",
+  "output_json": "data\\pdg\\sm_masses_latest.json",
+  "output_csv": "data\\pdg\\sm_masses_latest.csv",
+  "missing_keys": [
+    "nu_e",
+    "nu_mu",
+    "nu_tau"
+  ],
+  "found_keys": [
+    "W_boson",
+    "Z_boson",
+    "b_quark",
+    "c_quark",
+    "d_quark",
+    "electron",
+    "higgs",
+    "muon",
+    "s_quark",
+    "t_quark",
+    "tau",
+    "u_quark"
+  ],
+  "notes": {
+    "quarks": "Quark masses are scheme/scale dependent in PDG; treat as approximate inputs.",
+    "neutrinos": "Neutrinos may be absent or listed without a meaningful mass here; check missing_keys."
+  }
+}

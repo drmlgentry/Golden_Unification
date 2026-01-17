@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+\usepackage{placeins}
+
+\input{../shared/macros.tex}
+
+\title{Discrete Logarithmic Structure in Standard Model Flavor Data}
+\author{Marvin Gentry}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We examine Standard Model flavor observables in logarithmic coordinates under a fixed anchoring
+convention and report a reproducible discrete organization: fermion masses and mixing parameters
+cluster near integer-lattice locations within bounded residuals. The emphasis is empirical and
+auditable: all numerical outputs are generated deterministically and validated against explicit
+null hypotheses. Interpretation is sharply delimited; methodological implementation details are
+externalized to a companion methods paper.
+\end{abstract}
+
+\input{sections/01_log_structure.tex}
+\input{sections/02_lattice.tex}
+\input{sections/03_results.tex}
+\input{sections/04_integer_lattice_fits.tex}
+\input{sections/04_discussion.tex}
+
+\input{sections/05_mixing_observables.tex}
+\input{sections/06_ckm_verification.tex}
+\input{sections/06_pmns_extension.tex}
+\input{sections/06_holonomy_mixing.tex}
+\input{sections/06a_formal_verification.tex}
+\input{sections/06b_results_summary.tex}
+
+\input{sections/07_predictions.tex}
+\input{sections/08_falsifiability.tex}
+\input{sections/09_null_hypotheses.tex}
+\input{sections/10_null_tests.tex}
+
+\bibliographystyle{unsrt}
+\bibliography{../shared/references}
+
+\end{document}

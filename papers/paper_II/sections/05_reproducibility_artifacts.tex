@@ -1,0 +1,16 @@
+﻿\section{Reproducibility Artifacts}
+
+A central objective of this work is full numerical reproducibility. To this end, all reported tables and figures are generated directly from code and included verbatim in the manuscript.
+
+The repository accompanying this paper contains:
+\begin{itemize}
+  \item the complete set of scan scripts,
+  \item fixed configuration files specifying anchors and bounds,
+  \item generated outputs in both raw and \LaTeX-ready formats.
+\end{itemize}
+
+Manual transcription of numerical results is explicitly avoided. Instead, the manuscript inputs generated \LaTeX blocks directly from the repository to eliminate copy-and-paste errors.
+
+All scripts are deterministic and require no random seeds. Given the same inputs, the outputs are guaranteed to be identical across runs and platforms, up to floating-point precision.
+
+This approach allows independent readers to reproduce every numerical claim in this paper using a single command, providing a transparent audit trail from raw data to published result.

@@ -1,0 +1,31 @@
+% ============================================================
+% Paper VI.B section: results/interpretation bridge
+% File: papers/sections/06b_results_summary.tex
+% ============================================================
+
+\section{Numerical mixing results and interpretation}
+\label{sec:mixing_results_summary}
+
+This section is a results-oriented bridge between the holonomy hypothesis and the formal verification narrative.
+The numerical outputs themselves are externalized as a versioned artifact and are included verbatim in Section~\ref{sec:holonomy_mixing}.
+Here we state only what is being tested and what constitutes success or failure.
+
+\subsection{What is fixed, what is scanned}
+Given fixed global-fit inputs $s_{12}, s_{23}, s_{13}$ for CKM or PMNS, we scan a Dirac CP phase
+$\delta \in [0^\circ,360^\circ]$ on a dense grid and select the best match to a model-supplied holonomy angle $\theta_{\star}$
+using a pre-registered matching rule (degree-space or sine-space). The Jarlskog invariant $J$ is then computed as a consistency check.
+
+\subsection{What is reported and why it is verification-grade}
+The repository script \texttt{code/verify\_mixing.py} prints all inputs and returns a deterministic best-fit phase $\delta$
+along with the match score and $J$. It also writes a LaTeX-ready block to \texttt{shared/paperV\_mixing\_results.tex}, which is treated
+as an externalized, versioned artifact. Under this workflow, the paper never depends on manual copy-paste of numeric results.
+
+\subsection{Interpretation}
+This verification step establishes that the scan-and-match protocol is implemented correctly and that a chosen $\theta_{\star}$ produces
+a definite phase assignment and $J$ once the input sines are fixed. The substantive physics claim is that $\theta_{\star}$ is fixed by an
+independent geometric mechanism and remains stable under updated global fits, scheme choices, and pre-registered matching rules.
+
+\subsection{Falsifiability triggers}
+The holonomy-phase program fails if (i) modest updates of global-fit inputs destabilize the inferred phase beyond stated tolerances,
+(ii) the matching rule must be changed after inspecting outcomes, or (iii) the quark and lepton sectors cannot be made simultaneously consistent
+with a single geometric prescription for $\theta_{\star}$ once that prescription is stated explicitly.

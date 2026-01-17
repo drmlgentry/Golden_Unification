@@ -1,0 +1,166 @@
+% Paper_IX.tex — Constrained extension to mixing and CP observables
+% ================================================================
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{titlesec}
+\usepackage{float}
+
+\geometry{margin=1in}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\title{\textbf{Golden Unification IX: Constrained extension to mixing and CP observables}}
+\author{Marvin Gentry\thanks{Independent researcher.}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Paper~IX tests extension. Given the preregistered falsifiability protocol of Paper~VIII and the diagnostic
+controls of Paper~VII, we ask whether low-description-length structure can also constrain mixing and CP
+observables without introducing additional flexibility beyond predeclared limits. Success and failure
+are treated symmetrically: the aim is not to guarantee a fit, but to subject the extension to the same
+multiplicity, null-ensemble, and robustness diagnostics used for masses.
+\end{abstract}
+
+\section{Purpose and non-negotiable constraints}
+This paper tests extension: given the preregistered protocol, we ask whether the same low-description-length
+structure can constrain mixing and CP observables without increasing flexibility beyond defined limits.
+
+The following constraints are mandatory:
+
+\begin{enumerate}
+\item \textbf{No added tunable degrees of freedom post hoc.} If new global parameters are introduced for mixing or CP,
+they must be preregistered and fixed across the entire target set.
+\item \textbf{Solution sets, not exemplars.} Any apparent success must be reported with full multiplicity diagnostics.
+\item \textbf{Null ensembles.} Comparison distributions are defined prior to analysis.
+\item \textbf{Anchoring and phase conventions.} All gauge- or phase-like conventions are fixed and explicitly reported.
+\end{enumerate}
+
+\section{Target observables}
+\label{sec:targets}
+This paper targets a minimal, preregisterable set of observables.
+
+\subsection{Quark sector}
+A baseline target list includes:
+\begin{itemize}
+\item CKM mixing angles or a fixed Wolfenstein parameterization,
+\item a CP-violating invariant (e.g.\ the Jarlskog invariant $J$),
+\item the CKM phase $\delta_{\mathrm{CKM}}$ in a fixed convention.
+\end{itemize}
+
+\subsection{Lepton sector (optional extension)}
+If neutrino observables are included, preregister:
+\begin{itemize}
+\item mixing angles $\theta_{12},\theta_{13},\theta_{23}$ in a fixed convention,
+\item mass-squared differences $\Delta m^2$ (if masses are used),
+\item the leptonic CP phase $\delta_{\mathrm{CP}}$ with explicit convention and data source.
+\end{itemize}
+Because neutrino parameters evolve with experimental updates and global-fit assumptions, robustness
+requirements are especially strict.
+
+\section{Extension hypothesis}
+\label{sec:hypothesis}
+We test the following \emph{extension hypothesis}:
+
+\begin{quote}
+Given an encoding family that exhibits disciplined structure for masses under the diagnostics of
+Paper~VII, the same encoding family---without additional post-hoc flexibility---yields nontrivial
+constraint on a preregistered set of mixing and CP observables, with multiplicity and null-ensemble
+separation comparable to that observed for masses.
+\end{quote}
+
+This is a falsifiable descriptive claim, not a dynamical assertion.
+
+\section{Preregistered procedure (imported from Paper VIII)}
+\label{sec:procedure}
+All definitions, scan bounds, tolerances, residuals, multiplicity metrics, null ensembles, and
+termination criteria are inherited \emph{unchanged} from Paper~VIII.
+
+\subsection{Reporting bundle (identical to Paper VIII)}
+Each analysis must report:
+\begin{itemize}
+\item scan bounds and tolerance(s);
+\item per-observable minimum residuals and solution multiplicities;
+\item corresponding distributions under the preregistered null ensemble(s);
+\item a prespecified tail or decision criterion indicating pass or failure.
+\end{itemize}
+No additional significance measures are introduced in this paper.
+
+\subsection{Phase conventions}
+Phases are not directly observable. Therefore:
+\begin{itemize}
+\item a single phase convention is fixed and documented;
+\item alternative conventions, if examined, are treated as separate preregistered analyses.
+\end{itemize}
+
+\subsection{Residuals for periodic variables}
+For angles and phases, residuals must respect periodicity, e.g.
+\begin{equation}
+\epsilon_\delta \equiv \mathrm{wrap}(\delta_{\mathrm{fit}} - \delta_{\mathrm{exp}}),
+\end{equation}
+mapped into a fixed interval (such as $(-\pi,\pi]$) prior to applying the tolerance threshold.
+The wrapping rule and tolerance are preregistered.
+
+\section{Null ensembles for mixing and CP}
+\label{sec:null_cp}
+In addition to the nulls defined in Paper~VIII, mixing and CP observables admit:
+\begin{enumerate}
+\item \textbf{Phase randomization:} replace CP phases with draws uniform on $(-\pi,\pi]$.
+\item \textbf{Angle jitter:} perturb angles by preregistered noise consistent with uncertainties.
+\item \textbf{Structure-breaking shuffle:} shuffle angle/phase assignments within fixed classes.
+\end{enumerate}
+These nulls preserve gross phenomenology while destroying discrete or arithmetic alignment.
+
+\section{Robustness requirements}
+\label{sec:robustness}
+Robustness tests are stricter than for masses:
+\begin{enumerate}
+\item \textbf{Multiple input sources:} preregister which global fits are used (or analyze more than one).
+\item \textbf{Uncertainty propagation:} test persistence across plausible uncertainty ranges.
+\item \textbf{Parameter stability:} any global parameter shared with mass fits remains fixed.
+\end{enumerate}
+
+\section{Failure modes and termination}
+\label{sec:failure}
+By the standards of Paper~VIII, the extension fails if:
+\begin{enumerate}
+\item outcomes are indistinguishable from null ensembles;
+\item solution multiplicities show no meaningful separation;
+\item apparent success requires post-hoc changes to bounds, tolerances, or encoding;
+\item robustness checks eliminate the effect.
+\end{enumerate}
+A clean failure here sharply limits the scope of any arithmetic description.
+
+\section{Data sources (preregistered)}
+Prior to execution, all input sources are fixed and cited, e.g.:
+\begin{itemize}
+\item CKM parameters from a specified global fit (version and date recorded),
+\item neutrino parameters from a specified global analysis (if used),
+\item experimental uncertainties as published at the time of preregistration.
+\end{itemize}
+
+\section{Position in the 7--9 chain}
+Paper~VII: disciplined phenomenological diagnostics.\\
+Paper~VIII: preregistered falsifiability contract.\\
+Paper~IX: constrained extension to mixing and CP, with no new flexibility.
+
+\section{Conclusion}
+This paper does not assume that a mass-encoding regularity must extend to mixing or CP. It defines a
+constrained, audit-friendly test that either exhibits nontrivial separation from null ensembles under
+preregistered rules, or fails decisively. Either outcome improves scientific clarity and delimits the
+scope of the program.
+
+\bibliographystyle{plain}
+% \bibliography{../shared/references}
+
+\end{document}

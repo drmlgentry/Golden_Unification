@@ -1,0 +1,99 @@
+﻿\section{Bounded scan protocol}
+\label{sec:bounded_scan_protocol}
+
+This section defines the scan procedure used to test whether encoded observables cluster near
+discrete coordinates under the mapping specified in Sections~\ref{sec:encoding_map}
+and~\ref{sec:anchoring_conventions}.
+The protocol is designed to be finite, reproducible, and explicitly falsifiable.
+
+\subsection{Scan domain}
+
+Let $\Delta(x)$ denote the logarithmic coordinate of an observable $x$ relative to a declared anchor
+$x_0$.
+We consider integer assignments $n\in\mathbb{Z}$ within a bounded window
+\begin{equation}
+n_{\min} \;\le\; n \;\le\; n_{\max},
+\end{equation}
+where $(n_{\min},n_{\max})$ are fixed \emph{prior} to examining outcomes.
+
+The scan bounds are chosen to be wide enough to encompass all observables under consideration
+together with their stated uncertainties.
+No adaptive enlargement of bounds is permitted after results are inspected.
+
+\subsection{Matching criterion}
+
+For a given observable $x$, an integer assignment $n$ is considered a match if
+\begin{equation}
+\left| \Delta(x) - n \right| \;\le\; \epsilon ,
+\label{eq:match_condition}
+\end{equation}
+where $\epsilon>0$ is a fixed tolerance parameter.
+
+The tolerance $\epsilon$ is selected \emph{once} for a given analysis and applied uniformly across
+all observables and sectors.
+It is not tuned on a per-observable basis.
+All reported results explicitly state the value of $\epsilon$ used.
+
+\subsection{Multiplicity and degeneracy}
+
+An observable may admit zero, one, or multiple integer matches within the scan window.
+All admissible matches satisfying Eq.~\eqref{eq:match_condition} are retained.
+
+Two derived quantities are reported:
+\begin{itemize}
+\item The \emph{multiplicity}, defined as the number of integers $n$ satisfying the match condition.
+\item The \emph{residual}, defined as $\Delta(x)-n$ for each admissible $n$.
+\end{itemize}
+
+No preference rule is imposed at this stage to select a single match when multiple assignments are
+allowed.
+Any such selection would constitute an interpretive step and is therefore excluded from the scan
+protocol.
+
+\subsection{Treatment of uncertainties}
+
+Experimental uncertainties in $x$ are propagated to uncertainties in $\Delta(x)$ using standard
+error propagation.
+A match is considered admissible if there exists at least one value of $\Delta(x)$ within the stated
+uncertainty band that satisfies Eq.~\eqref{eq:match_condition}.
+
+Uncertainty inflation or contraction is not permitted.
+All uncertainties are taken directly from the input data sources declared in the reproducibility
+artifacts.
+
+\subsection{Null outcomes}
+
+The protocol explicitly allows for null results.
+An observable is classified as a null if no integer $n$ within the scan bounds satisfies
+Eq.~\eqref{eq:match_condition}.
+
+Nulls are reported on equal footing with matches.
+The absence of matches for a significant subset of observables is treated as evidence \emph{against}
+the presence of a discrete organization under the tested conventions.
+
+\subsection{Pre-registration and immutability}
+
+The following elements are fixed prior to executing any scan:
+\begin{enumerate}
+\item Anchor choice(s).
+\item Scan bounds $(n_{\min},n_{\max})$.
+\item Tolerance $\epsilon$.
+\item Matching criterion Eq.~\eqref{eq:match_condition}.
+\end{enumerate}
+
+Any modification to these elements constitutes a new analysis and must be reported as such.
+This rule prevents post hoc optimization and ensures that apparent structure cannot be manufactured
+by retroactive parameter adjustment.
+
+\subsection{Outputs}
+
+The scan produces a deterministic set of outputs:
+\begin{itemize}
+\item A table of observables with all admissible integer assignments.
+\item Corresponding residuals and multiplicities.
+\item Explicit documentation of null cases.
+\end{itemize}
+
+These outputs are written directly to machine-readable artifacts and included verbatim in downstream
+papers.
+No manual transcription or selective reporting is permitted.

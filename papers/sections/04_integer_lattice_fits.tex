@@ -1,0 +1,51 @@
+\section{Anchored Integer-Lattice Fits}
+\label{sec:integer_fits}
+
+We present results for the anchored lattice in which the electron defines the reference convention
+($\Delta_e=0$, $q_e=0$). All other particles are fit by scanning integer triples $(a,b,c)$ within
+declared bounds and minimizing the absolute residual $\epsilon = |\delta|$.
+
+\subsection{Best-fit solutions}
+
+Table~\ref{tab:mass_fits} summarizes representative best-fit assignments for the audited mass set.
+The quantity $\delta$ is the signed logarithmic discrepancy defined in Eq.~\eqref{eq:signed_delta}.
+Fit quality is assessed using $\epsilon = |\delta|$ (Eq.~\eqref{eq:epsilon_def}).
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccccc}
+\hline
+Particle & $m_{\mathrm{exp}}$ & $m_{\mathrm{pred}}$ & $a$ & $b$ & $c$ & $\delta$ \\
+\hline
+electron & 0.000510999 & 0.000510999 & -78 & -40 & 51 & 0.0000 \\
+muon     & 0.105658375 & 0.101691359 & -80 & -36 & 51 & -0.0376 \\
+tau      & 1.77686     & 1.82477739  & -80 & -36 & 52 & +0.0270 \\
+$W$      & 80.379      & 76.0088399  & -78 & -35 & 52 & -0.0544 \\
+$Z$      & 91.1876     & 85.7256949  & -79 & -36 & 53 & -0.0599 \\
+top      & 172.76      & 176.438141  & -79 & -34 & 52 & +0.0213 \\
+\hline
+\end{tabular}
+\caption{Representative anchored-lattice fits for the audited mass set.}
+\label{tab:mass_fits}
+\end{table}
+
+\subsection{Multiplicity and uniqueness}
+
+Within the scanned bounds, solutions are deduplicated by $q$. Several particles admit multiple
+integer realizations at loose tolerance, but collapse to unique $q$ values under anchoring. The
+reported values should therefore be interpreted as best-fit representatives of the deduplicated
+solution sets.
+
+\subsection{Scope of mass-sector claims}
+
+The mass results establish the following limited statement:
+
+\begin{quote}
+Within declared scan bounds and a fixed anchoring convention, the anchored lattice intersects
+observed fermion mass scales with bounded logarithmic residuals and controlled multiplicity after
+deduplication by $q$.
+\end{quote}
+
+No dynamical mechanism is assumed or inferred from these fits. The role of the mass analysis is to
+document a discrete regularity and to specify falsification criteria under explicit, auditable
+conventions.

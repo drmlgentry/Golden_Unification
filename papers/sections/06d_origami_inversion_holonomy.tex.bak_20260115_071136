@@ -1,0 +1,49 @@
+﻿% ============================================================
+% Section 06d: Origami inversion move -> configuration holonomy
+% File: papers/sections/06d_origami_inversion_holonomy.tex
+% ============================================================
+
+\\{Toy model: inversion of a five-triangle patch and geometric phase}
+\label{sec:origami_inversion_holonomy}
+
+\\{Motivation from a concrete deformation.}
+Consider a local patch of a Euclidean icosahedral surface built from equilateral triangles. A common physical move in paper-folded models is to \\{push} a central vertex inward along an axis normal to the patch (`along the z-axis''), causing the patch to `pop'' between two stable conformers. Empirically, the cyclic order of the incident faces around the vertex can remain preserved even though the embedding in \(\\{R}^3\) changes discontinuously in appearance.
+
+The key observation for our purposes is that such a pop is naturally treated as a \\{path in configuration space} rather than a pointwise spatial inversion. This makes it a natural source of holonomy-like observables.
+
+\\{Configuration-space loop.}
+Let \(\\{C}\) denote the configuration space of the constrained patch (edge lengths fixed; fold angles allowed within admissible constraints). A deformation protocol is a continuous path
+\[
+\\ : [0,1] \\ \\{C}, \\ \\(0)=c_0,
+\]
+and a `pop-through and return'' protocol corresponds to a closed loop \(\\\) with \(\\(1)=\\(0)=c_0\). Even if the patch appears to return to the same macroscopic geometry, the loop in \(\\{C}\) can be topologically nontrivial.
+
+\\{Berry holonomy (U(1) toy coupling).}
+Now couple a toy quantum degree of freedom \(|\\(c)\\\) adiabatically to the configuration \(c\\\\{C}\). Under an adiabatic traverse of \(\\\), the state acquires a geometric phase
+\[
+\\\\( i\\,\\[\\] \\), 
+\\[\\] = \\_{\\} \\{A},
+\]
+where \(\\{A} = i\\ \\ | \\{d}\\ \\\) is the Berry connection 1-form on \(\\{C}\). This is the simplest (U(1)) holonomy. The phase \(\\\) is gauge-invariant modulo \(2\\\) and depends on the \\{loop} rather than only the endpoints.
+
+This provides a mathematically controlled analog of how a discrete geometric move can produce a robust phase observable without invoking new local dynamics.
+
+\\{Relation to Wilson loops.}
+In the U(1) case, the above phase is a Wilson loop of the Berry connection:
+\[
+W[\\] = \\\\(i\\_{\\} \\{A}\\).
+\]
+Section~06c introduced Wilson-loop language directly. Here we emphasize the geometric interpretation: the `origami inversion'' move supplies a concrete candidate for \(\\\).
+
+\\{How this connects to CP phases (conservative statement).}
+In the Standard Model, the physically meaningful CP-violating phase is not an arbitrary parameter; it is meaningful only through rephasing-invariant combinations such as the Jarlskog invariant \(J\). A holonomy-based hypothesis is therefore credible only insofar as it produces:
+(i) a phase defined modulo discrete equivalences,
+(ii) a stable rule that maps geometry to the phase before fitting,
+and (iii) a rephasing-invariant observable (e.g., \(J\)).
+
+Accordingly, we treat the origami inversion toy model as a \\{geometric source} of a phase-like observable, not as a literal identification of antiparticles. The correct falsifiable content is whether a discrete geometric protocol can define \(\\_{\\}\) (or \(\\\\_{\\}\)) in a way that is stable and predictive when inserted into the CKM/PMNS audit pipeline of Section~06.
+
+\\{Immediate next step.}
+A minimal numerical experiment (future work) is to define a low-dimensional parameterization of the patch (e.g., by one or two fold angles), specify an explicit \(|\\(c)\\\), compute \(\\[\\]\) for the pop-through loop, and test whether the resulting phase exhibits the same discrete ambiguities as the matching rules used for \(\\\) in Section~06.
+
+

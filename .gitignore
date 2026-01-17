@@ -1,0 +1,32 @@
+@"
+# Build / latex
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.run.xml
+*.bcf
+*.nav
+*.snm
+*.vrb
+
+# PDFs (keep if you explicitly want to version them)
+*.pdf
+
+# Repo build outputs
+/dist/
+/results/
+/outputs/
+/papers/outputs/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+"@ | Set-Content -LiteralPath .\.gitignore -Encoding UTF8

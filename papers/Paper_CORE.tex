@@ -1,0 +1,186 @@
+﻿% Paper_CORE.tex â€” Conservative Core Paper (EPJC-ready positioning)
+% ================================================================
+% Compile from: ...\Golden_Unification\papers
+%   pdflatex Paper_CORE.tex (twice)
+
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+
+% --- Shared macros (must NOT redefine \Afive etc. inside this file) ---
+\input{../shared/macros.tex}
+
+% --- Local safety: only define if absent ---
+\providecommand{\eps}{\varepsilon}
+\providecommand{\Lag}{\mathcal{L}}
+\providecommand{\Order}{\mathcal{O}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\R}{\mathbb{R}}
+
+\title{A Discrete Logarithmic Organization of Flavor Data:\\
+Anchored Lattice Structure and Mixing-Phase Verification}
+\author{[Author Name]}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report an empirical organization of selected Standard Model flavor observables in which particle masses and mixing phases align with a discrete structure in logarithmic space. The approach is intentionally conservative: we do not propose a new dynamical mechanism, nor do we replace established elements of the Standard Model. Instead, we define an anchored logarithmic mass index based on the golden ratio $\phig$ and a linear integer functional $q(a,b,c)$ motivated by the representation theory of the icosahedral group $\Afive$. Within a bounded scan domain, an anchor choice fixes the electron as a reference state ($q_e=0$), and other masses are fit by integer triples $(a,b,c)\in\Z^3$ minimizing a relative logarithmic error. We then extend the framework to mixing by verifying a holonomy-matching criterion for CKM parameters and providing a directly analogous PMNS extension. We emphasize reproducibility (all tables written by deterministic scripts), multiplicity/degeneracy reporting, and falsifiability criteria distinguishing structural regularity from coincidence.
+\end{abstract}
+
+\section{Scope and positioning}
+\label{sec:scope}
+This paper is a \emph{data-facing} and \emph{reproducibility-first} presentation of a discrete logarithmic organization observed in flavor-sector inputs. The central claims are:
+\begin{enumerate}
+\item \textbf{Mass organization:} selected particle masses can be mapped to a discrete logarithmic lattice parameterized by integer triples $(a,b,c)$ through a single scalar index $q(a,b,c)$.
+\item \textbf{Mixing-phase verification:} the observed CKM CP phase can be matched by a compact scan criterion (reported here as a verification step); an analogous PMNS extension is presented in the same form.
+\end{enumerate}
+We explicitly \textbf{do not} claim that the Standard Model Lagrangian is replaced or that a full ultraviolet completion is provided. The results should be read as an empirical mapping that motivates further investigation.
+
+\section{Mathematical preliminaries: $\Afive$ as a geometric organizer}
+\label{sec:a5}
+The alternating group $\Afive$ (order $60$) is the rotational symmetry group of the icosahedron/dodecahedron. It admits irreducible representations of dimensions $1,3,3',4,5$. The appearance of $\phig=(1+\sqrt{5})/2$ is geometrically natural in this setting.
+
+For the purposes of this core paper, we require only a minimal organizing principle: a \emph{linear} integer functional on $\Z^3$,
+\begin{equation}
+q(a,b,c) \;=\; 8a + 15b + 24c,
+\label{eq:q_def}
+\end{equation}
+where the coefficients $\{8,15,24\}$ are treated as fixed representation-theoretic weights (motivated by prior work and retained here as a \emph{hypothesis under test}). The aim is not to exhaustively derive these numbers from first principles in this paper, but to evaluate whether they produce robust, reproducible organization of the flavor data when combined with conservative anchoring and bounded searches.
+
+\section{Anchored logarithmic mass index and lattice model}
+\label{sec:mass_model}
+Let $m$ be a particle mass and $m_e$ the electron mass. Define the logarithmic mass index
+\begin{equation}
+\Delta(m) \;=\; \log_{\phig}\!\Big(\frac{m}{m_e}\Big).
+\label{eq:delta_def}
+\end{equation}
+We then posit the discrete hypothesis
+\begin{equation}
+\Delta(m) \approx \frac{q(a,b,c)}{4},
+\qquad (a,b,c)\in\Z^3,
+\label{eq:lattice_hypothesis}
+\end{equation}
+equivalently
+\begin{equation}
+m_{\text{pred}}(a,b,c) \;=\; m_e\, \phig^{q(a,b,c)/4}.
+\label{eq:mass_pred}
+\end{equation}
+
+\subsection{Anchoring and the role of the reference triple}
+\label{sec:anchor}
+A key practical issue is normalization: without anchoring, scans may admit multiple equivalent descriptions differing by an overall shift. We therefore adopt an \emph{anchored model}: choose a specific integer triple $(a_e,b_e,c_e)$ such that the electron is the reference state with
+\begin{equation}
+q_e \equiv q(a_e,b_e,c_e)=0,
+\qquad\Rightarrow\qquad m_{\text{pred}}(a_e,b_e,c_e)=m_e.
+\end{equation}
+This anchor converts the lattice into a \emph{relative} indexing scheme rather than an arbitrary exponential fit.
+
+\subsection{Fit objective and bounded scan}
+\label{sec:scan}
+Given an experimental mass $m$, define the relative log-error
+\begin{equation}
+\epsilon(m;a,b,c)\;=\;\frac{\log m_{\text{pred}}(a,b,c) - \log m}{\log m}.
+\label{eq:eps}
+\end{equation}
+For each particle, we scan a bounded integer domain $(a,b,c)\in\mathcal{B}\subset\Z^3$ and select the triple minimizing $|\epsilon|$. We additionally report \emph{multiplicity} information: the number of distinct solutions within tolerance, and whether uniqueness holds after deduplication by $q$.
+
+\paragraph{Reproducibility.}
+All tables in this paper are generated by deterministic scripts that write \LaTeX{} blocks into the repository under \texttt{shared/}. The paper inputs those blocks verbatim to prevent transcription errors.
+
+\section{Results: anchored mass-lattice fits}
+\label{sec:mass_results}
+The anchored scan outputs are included directly from the repository artifact:
+
+\medskip
+\noindent\textbf{Auto-generated results block (anchored mass model):}
+\begin{center}
+\begin{minipage}{0.98\linewidth}
+% DUPLICATE REMOVED: \input{../shared/paperIII_results.tex}
+\end{minipage}
+\end{center}
+\medskip
+
+These results should be interpreted in two layers:
+\begin{enumerate}
+\item the \emph{numerical proximity} of best-fit $m_{\text{pred}}$ to $m$ for each particle within the scan domain;
+\item the \emph{degeneracy structure} (how many integer descriptions exist within tolerance), which is crucial for distinguishing genuine structure from overfitting.
+\end{enumerate}
+
+\section{Mixing-sector verification: CKM and PMNS phase scans}
+\label{sec:mixing}
+We next evaluate whether the same discrete-geometric viewpoint can be extended to mixing phases in a way that is (i) transparent, (ii) reproducible, and (iii) clearly falsifiable.
+
+\subsection{CKM phase verification}
+Given CKM inputs $(s_{12},s_{23},s_{13})$, the Jarlskog invariant satisfies
+\begin{equation}
+J_{\text{CKM}} \;=\; s_{12}\,s_{23}\,s_{13}\,c_{12}\,c_{23}\,c_{13}^2\,\sin\delta_{\text{CKM}}.
+\label{eq:jckm}
+\end{equation}
+The verification procedure implemented in the repository scans $\delta$ over a specified grid and compares it to a predicted holonomy angle $\theta_{\text{pred}}$ using a match criterion (both in degrees and via $\sin$ matching). The point of this section is \emph{not} to claim a unique derivation of CKM mixing from first principles, but to show how the proposed geometric matching can be audited and reproduced.
+
+\subsection{PMNS extension}
+An analogous scan can be performed for PMNS parameters $(s_{12},s_{23},s_{13})$ and the leptonic CP phase $\delta_{\text{PMNS}}$,
+\begin{equation}
+J_{\text{PMNS}} \;=\; s_{12}\,s_{23}\,s_{13}\,c_{12}\,c_{23}\,c_{13}^2\,\sin\delta_{\text{PMNS}},
+\label{eq:jpmns}
+\end{equation}
+with the same matching criterion against a leptonic holonomy prediction $\theta_{\text{pred}}^{(\ell)}$.
+
+\medskip
+\noindent\textbf{Auto-generated mixing results block (CKM verification + PMNS extension):}
+\begin{center}
+\begin{minipage}{0.98\linewidth}
+% DUPLICATE REMOVED: \input{../shared/paperV_mixing_results.tex}
+\end{minipage}
+\end{center}
+\medskip
+
+\paragraph{Interpretation (conservative).}
+At this stage, the mixing-sector output is best read as a \emph{verification artifact}: it shows that, given the stated input parameters and match rule, the predicted and best-fit phases coincide (to grid precision) under the chosen criterion. The principal scientific questions then become: (i) whether $\theta_{\text{pred}}$ is fixed non-ad hoc by the theory; (ii) whether the match is stable under updated global fits and alternative parameterizations; and (iii) whether the same structure extends beyond a single matched point to a broader set of correlated observables.
+
+\section{Statistical and methodological cautions}
+\label{sec:cautions}
+Discrete lattice descriptions can be misleading if multiplicity is not reported. We therefore adopt the following methodological rules:
+\begin{enumerate}
+\item \textbf{Multiplicity first:} report the count of solutions within tolerance, and whether uniqueness holds after deduplication by $q$.
+\item \textbf{Pre-registered scan bounds:} all bounds must be declared before scanning (and archived in the repo) to prevent untracked expansion of the search domain.
+\item \textbf{Scheme dependence:} quark masses are scheme- and scale-dependent; results must be presented with explicit conventions (pole vs.\ running, $\overline{\text{MS}}$ scale, etc.).
+\item \textbf{Stability under updates:} a claim of structure must remain stable under reasonable updates to PDG inputs and global-fit values.
+\end{enumerate}
+
+\section{Discussion: physical interpretation and next falsifiable steps}
+\label{sec:discussion}
+The empirical alignment between flavor observables and a discrete logarithmic lattice suggests that the spectrum exhibits more regularity in log space than would arise from an unstructured assignment. A conservative interpretation is that this lattice reflects an underlying organizing principle (geometric or algebraic) that constrains the outcomes of mass generation indirectly, without appearing as an explicit low-energy symmetry of the Standard Model Lagrangian.
+
+Crucially, the present paper does not claim a derived mass formula in the conventional dynamical sense. Instead, it provides a reproducible mapping and a set of audit-ready verification artifacts (including multiplicity diagnostics) that can be tested against future updates and alternative datasets.
+
+\subsection*{Immediate falsifiability roadmap}
+The program becomes scientifically decisive only if it yields at least one of the following:
+\begin{enumerate}
+\item \textbf{Stability:} the best-fit $(a,b,c)$ assignments for a fixed, declared dataset remain stable under small PDG updates or reasonable scheme changes.
+\item \textbf{Nontrivial correlated constraints:} two or more observables are simultaneously constrained by the same discrete structure (not fit independently).
+\item \textbf{Forward prediction:} a quantitative prediction is made before measurement (e.g., a phase relation, a mass relation at a specified renormalization scale, or a constrained region for $\delta_{\text{PMNS}}$ given future global fits).
+\end{enumerate}
+
+\section{Conclusion}
+\label{sec:conclusion}
+We have presented a conservative core formulation of a discrete logarithmic organization of flavor-sector data. The approach anchors the electron as a reference state, scans bounded integer domains for lattice assignments, reports multiplicity diagnostics, and extends the framework to mixing via reproducible CKM verification and a PMNS extension. The result is not offered as a completed physical model but as an audit-ready empirical structure that can be stress-tested, refined, or falsified as data and conventions evolve.
+
+\section*{Repository notes (for referees / reproducibility)}
+All numerical outputs used in this paper are written as \LaTeX{} blocks under \texttt{shared/} and included verbatim:
+\begin{itemize}
+\item \texttt{shared/paperIII\_results.tex} (anchored mass scan)
+\item \texttt{shared/paperV\_mixing\_results.tex} (CKM+PMNS scan)
+\end{itemize}
+The corresponding scripts reside under \texttt{code/}. This is designed to prevent transcription errors and enable one-command regeneration of tables.
+
+\end{document}
+

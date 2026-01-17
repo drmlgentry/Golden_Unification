@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "Golden Unification: Discrete Logarithmic Lattice and Holonomy Audit Pipeline"
+type: software
+authors:
+  - name: "Marvin Gentry"
+    orcid: "https://orcid.org/0009-0006-4550-2663"
+repository-code: "REPLACE_WITH_PUBLIC_REPO_URL"
+license: "CC-BY-4.0"
+keywords:
+  - particle physics
+  - flavor physics
+  - modular symmetry
+  - reproducibility
+  - integer lattice
+  - holonomy

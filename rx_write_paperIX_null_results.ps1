@@ -1,0 +1,70 @@
+# ============================================================
+# Write shared/paperIX_null_results.tex (safe, no PS $() issues)
+# ============================================================
+
+$root   = "C:\Users\Your Name Here\Desktop\Golden_Unification"
+$shared = Join-Path $root "shared"
+$out    = Join-Path $shared "paperIX_null_results.tex"
+
+if (-not (Test-Path -LiteralPath $shared)) {
+    New-Item -ItemType Directory -Path $shared | Out-Null
+}
+
+@'
+% ============================================================
+% Paper IX — Null hypotheses and statistical protocol (RESULTS)
+% Auto-authored block for \input{../shared/paperIX_null_results.tex}
+% ============================================================
+
+\subsection{Anchored fit score used for hypothesis testing}
+We use the anchored integer-lattice fit described in Secs.~\ref{sec:lattice}--\ref{sec:results} and summarize goodness-of-fit
+by the mean absolute logarithmic deviation (``mean epsilon'')
+\begin{equation}
+\overline{\epsilon} \equiv \frac{1}{N}\sum_{i=1}^{N} \left|\log_{\varphi}\!\left(\frac{m^{(i)}_{\mathrm{pred}}}{m^{(i)}_{\mathrm{exp}}}\right)\right|.
+\end{equation}
+For the anchored scan on the reference set (charged leptons, $W$, $Z$, top), we obtain
+\begin{equation}
+\overline{\epsilon}_{\mathrm{obs}} = 6.940320\times 10^{-2}.
+\end{equation}
+The per-particle best-achievable $\epsilon$ values under the fixed scan box are:
+\begin{center}
+\begin{tabular}{l c}
+\hline
+Particle & $\epsilon_{\min}$ \\
+\hline
+electron & $0$ \\
+muon     & $7.952564\times 10^{-2}$ \\
+tau      & $5.529840\times 10^{-2}$ \\
+$W$      & $1.161719\times 10^{-1}$ \\
+$Z$      & $1.216442\times 10^{-1}$ \\
+top      & $4.377904\times 10^{-2}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Important note on null ensembles}
+A naive ``null'' formed by permuting labels among a fixed multiset of masses is \emph{not} a valid hypothesis test for this score:
+it can leave $\overline{\epsilon}$ invariant (as empirically observed in our initial permutation experiment). Therefore, all reported
+$p$-values in this work will be based only on null ensembles that genuinely alter the spectrum.
+
+\subsection{Pre-registered null models}
+We pre-register two complementary null ensembles.
+
+\paragraph{Null A (log-uniform i.i.d.).}
+Draw $N$ synthetic masses independently from a log-uniform distribution on the observed range:
+$\log m \sim \mathrm{Unif}(\log m_{\min},\log m_{\max})$.
+Compute $\overline{\epsilon}$ using the identical scan box, anchoring convention, and tie-handling rules.
+
+\paragraph{Null B (jittered spectrum).}
+Form synthetic masses by perturbing the observed spectrum in log-space:
+$\log m_i^{(\mathrm{null})}=\log m_i+\sigma\xi_i$ with $\xi_i\sim\mathcal N(0,1)$ and fixed pre-registered $\sigma$.
+Compute $\overline{\epsilon}$ as above. We report results for at least two values of $\sigma$ (coarse and fine) to assess robustness.
+
+\paragraph{Reporting rule.}
+For each null, run $N_{\mathrm{null}}$ trials and report the empirical one-sided tail probability
+$p_{\mathrm{emp}}=\Pr(\overline{\epsilon}_{\mathrm{null}}\le \overline{\epsilon}_{\mathrm{obs}})$ together with the null median and central intervals.
+All choices (scan box, anchoring, tolerance, and null parameters) are fixed \emph{before} adding new species or extending the scan range.
+
+'@ | Set-Content -LiteralPath $out -Encoding UTF8
+
+Write-Host "Wrote: $out" -ForegroundColor Green

@@ -1,0 +1,135 @@
+﻿% Paper_I.tex — Program statement, standards, and roadmap
+% ======================================================
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{titlesec}
+\usepackage{float}
+
+\geometry{margin=1in}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\title{\textbf{Golden Unification I: Program statement, standards of evidence, and roadmap}}
+\author{Marvin Gentry\thanks{Independent researcher.}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper defines the Golden Unification program as an \emph{audit-first} research sequence: a reproducible
+encoding pipeline, disciplined diagnostics (bounded scan, multiplicity reporting, null ensemble), and a
+preregistered falsifiability contract. The program does not begin by claiming a new dynamical mechanism.
+It begins by asking a prior scientific question: whether portions of the Standard Model spectrum admit
+a low-description-length arithmetic/geometric encoding that survives robustness checks and is separable
+from structured null alternatives. Papers~II--IX implement this agenda in a staged chain designed to
+prevent post-hoc storytelling and to make failure as informative as success.
+\end{abstract}
+
+\section{Motivation: the right question first}
+In foundational work, it is easy to confuse an aesthetically pleasing parametrization with an explanatory theory.
+This program therefore distinguishes three levels of claim:
+
+\begin{enumerate}
+\item \textbf{Descriptive regularity:} a compact encoding reproduces data within declared tolerances in a way that is
+not ubiquitous under reasonable null ensemble.
+\item \textbf{Constraint:} the same encoding family restricts additional observables without adding post-hoc flexibility.
+\item \textbf{Mechanism:} a dynamical model explains why the encoding arises (symmetry, geometry, RG flow, etc.).
+\end{enumerate}
+
+The sequence in this series is built to earn Level~1 before claiming Level~2, and to earn Level~2 before
+speculating about Level~3.
+
+\section{Scientific posture: auditability over persuasion}
+The core discipline is: \emph{every result must be reproducible and falsifiable at the level of code and conventions.}
+Accordingly, the program commits to:
+
+\begin{enumerate}
+\item \textbf{Explicit degrees of freedom.} Maps, parameters, anchors, tolerances, and scan bounds are defined in the paper
+and pinned in the repository history.
+\item \textbf{Multiplicity reporting.} A ``best fit'' is never presented without counts of how many solutions occur within the
+same bounds and tolerance.
+\item \textbf{Null ensembles.} Pattern claims are evaluated against preregistered structure-breaking alternatives, not against
+informal intuition.
+\item \textbf{Robustness.} A result must survive reasonable updates of inputs (e.g.\ PDG updates), and where applicable,
+scheme/scale choices.
+\item \textbf{Failure symmetry.} A clean negative result is treated as a scientific outcome; it terminates or refines the encoding,
+rather than being rescued by extra flexibility.
+\end{enumerate}
+
+\section{What the program is (and is not)}
+\subsection{What it is}
+This is a \emph{test harness} for low-description-length structure in a set of precision observables. The initial target is
+the mass spectrum because it spans many decades, is comparatively stable, and is already the site of many
+numerological failures; that history motivates stricter controls.
+
+\subsection{What it is not}
+This is not, at the outset, a claim that an integer encoding \emph{is} fundamental physics. Compact encodings may appear
+for reasons unrelated to mechanism (selection effects, conventions, hidden tuning, or structured noise). The series is
+therefore structured to prevent premature interpretive leaps.
+
+\section{Definitions: the minimal objects}
+Let $\mathcal{O}$ denote a preregistered set of observables (masses, and later mixing/CP quantities).
+Each observable $i$ has an experimental value $y_i^{\mathrm{exp}}$ (typically a mass $m_i$).
+
+An \textbf{encoding} assigns each observable a finite integer descriptor $x_i\in\mathbb{Z}^d$ and a fixed map
+$y^{\mathrm{fit}}(x_i;\theta)$ produces a prediction with global parameters $\theta$ shared across the full set.
+A \textbf{residual} $\epsilon_i$ and \textbf{tolerance} $\tau$ declare what counts as a match.
+A \textbf{bounded scan} searches descriptors within a finite preregistered region $\mathcal{B}\subset\mathbb{Z}^d$.
+
+These definitions are implemented concretely in Paper~II, used operationally in Paper~III, and disciplined statistically
+in Papers~VII--VIII.
+
+\section{Roadmap: the 1--9 chain}
+This series is intentionally modular:
+
+\begin{enumerate}
+\item \textbf{Paper I (this paper):} program statement, standards of evidence, and roadmap.
+\item \textbf{Paper II:} encoding map, anchoring conventions, bounded scan methodology, and reproducibility contract.
+\item \textbf{Paper III:} mass-spectrum scan results with per-observable best fits and multiplicity diagnostics.
+\item \textbf{Paper IV:} intermediate structural tests that must reuse the Paper~II mapping layer without silent changes.
+\item \textbf{Paper V:} additional adjacent tests/controls to reduce degrees of freedom and expose failure modes.
+\item \textbf{Paper VI:} (if included) interpretive synthesis that remains explicitly non-mechanistic and conditional on diagnostics.
+\item \textbf{Paper VII:} phenomenological diagnostics: null ensemble, robustness, multiplicity separation, and disciplined reporting.
+\item \textbf{Paper VIII:} preregistration and falsifiability: what counts as prediction; termination criteria.
+\item \textbf{Paper IX:} constrained extension to mixing/CP under the same no-post-hoc-flexibility discipline.
+\end{enumerate}
+
+A central rule is continuity: papers that claim to build on earlier results must not alter the mapping layer without
+declaring a new analysis and reporting side-by-side comparisons.
+
+\section{Standards of evidence used throughout}
+We will treat a descriptive regularity as \emph{plausibly nontrivial} only if it meets the following minimum bar:
+
+\begin{enumerate}
+\item \textbf{Reproducibility:} deterministic scripts regenerate all tables/figures used in the claim.
+\item \textbf{Multiplicity separation:} solution counts $N_i(\tau)$ show separation from preregistered null ensemble, not merely small residuals.
+\item \textbf{Robustness:} the effect persists under reasonable updates and convention changes declared in advance.
+\item \textbf{Conservatism about mechanism:} any interpretive language is explicitly conditional on diagnostics.
+\end{enumerate}
+
+This bar is strict by design; it is meant to make the result meaningful if it survives.
+
+\section{Repository discipline and single-command builds}
+To prevent drift between narrative and computation, each paper should compile from the \texttt{papers/} directory and
+all generated artifacts (tables/figures) should be regenerated from scripts stored in the repository. Each analysis
+should be associated with a tagged release or commit hash.
+
+\section{Conclusion}
+Paper~I establishes the program as an audit-first sequence. The goal is to determine whether a compact encoding is
+present and nontrivial under disciplined diagnostics, and to define in advance what would terminate the program.
+Paper~II now specifies the mapping layer and scan protocol; Paper~III reports results in that exact framework.
+
+\bibliographystyle{plain}
+% \bibliography{../shared/references}
+
+\end{document}
+

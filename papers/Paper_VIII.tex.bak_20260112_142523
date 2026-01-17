@@ -1,0 +1,196 @@
+﻿% Paper_VIII.tex — Synthesis, preregistration, falsifiability
+% ============================================================
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{titlesec}
+\usepackage{float}
+
+\geometry{margin=1in}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\title{\textbf{Golden Unification VIII: Synthesis, preregistration, and falsifiability}}
+\author{Marvin Gentry\thanks{Independent researcher.}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper converts the program's diagnostic findings into a preregistered falsifiability protocol.
+Where Paper~VII established disciplined phenomenological diagnostics (bounded scans, null ensembles,
+and multiplicity reporting), Paper~VIII specifies what counts as a \emph{prediction}, how to avoid
+overfitting, and which outcomes terminate the program. The goal is not to claim a derived mass
+mechanism but to define a reproducible test harness for assessing whether low-description-length
+arithmetic structure is present in the Standard Model spectrum and survives reasonable variations
+of inputs and conventions.
+\end{abstract}
+
+\section{Purpose and scope}
+Paper~VII is diagnostic rather than constructive: it tests whether an encoding survives null
+ensembles, bounded scans, and non-optimized anchoring. Paper~VIII turns that diagnostic discipline
+into a falsifiability plan.
+
+We make four commitments:
+
+\begin{enumerate}
+\item \textbf{Predefinition:} All encodings, tolerances, bounds, and null ensembles are specified
+\emph{before} testing any new observable set.
+\item \textbf{Multiplicity:} Solutions are reported as \emph{sets} (with multiplicity diagnostics),
+not as a single best fit.
+\item \textbf{Anchoring discipline:} Anchors are fixed by convention and reported explicitly; anchors
+are not tuned to improve outcomes.
+\item \textbf{Termination criteria:} We state what results would count as decisive failures.
+\end{enumerate}
+
+\section{Definitions and preregistered protocol}
+\label{sec:definitions_protocol}
+This section defines a minimal protocol that can be preregistered (e.g., timestamped commit, signed
+artifact, or archived release). The protocol is written to be implementable and audit-friendly.
+
+\subsection{Encoding and residual}
+Let each observable be assigned a finite integer descriptor $x\in\mathbb{Z}^d$ (e.g.\ $x=(a,b,c)$),
+and let a fixed map $m_{\mathrm{fit}}(x;\theta)$ produce a predicted value for the observable
+(e.g.\ a mass). The parameter vector $\theta$ is \emph{global} and fixed across the fit set unless
+stated (e.g.\ base scales, lattice spacing, etc.). The residual is defined as
+\begin{equation}
+\epsilon \equiv \log\!\left(\frac{m_{\mathrm{fit}}}{m_{\mathrm{exp}}}\right),
+\end{equation}
+or another preregistered monotone alternative; the key point is that $\epsilon$ is fixed
+\emph{before} scanning.
+
+\subsection{Bounds and scan region}
+All searches occur within a preregistered finite region
+\begin{equation}
+x \in \mathcal{B} \subset \mathbb{Z}^d,
+\end{equation}
+specified by explicit integer bounds (e.g.\ $a\in[a_{\min},a_{\max}]$, etc.). If the scan bounds are
+expanded, that is treated as a \emph{new preregistered analysis}, not as a continuation of the prior one.
+
+\subsection{Tolerance and success}
+A tolerance threshold $\tau>0$ is preregistered and success is defined as
+\begin{equation}
+|\epsilon| \le \tau.
+\end{equation}
+We recommend preregistering at least two tolerances: a strict one (e.g.\ $\tau_{\mathrm{strict}}$)
+and a coarse one (e.g.\ $\tau_{\mathrm{coarse}}$), to separate fine-tuned coincidence from coarse structure.
+The values may differ by observable class, but must be fixed \emph{before} running scans.
+
+\subsection{Multiplicity metrics}
+For each observable $i$:
+\begin{itemize}
+\item $N_i(\tau)$: count of descriptors $x\in\mathcal{B}$ satisfying $|\epsilon_i(x)|\le\tau$.
+\item $\epsilon_{i,\min}$: minimum absolute residual within the scan region.
+\item Optional deduplication: if there is an equivalence relation $x\sim x'$ (e.g.\ phase classes $q$),
+report both raw $N_i$ and deduplicated $N_i^{(\mathrm{dedup})}$.
+\end{itemize}
+The core claim is never about a single best fit; it must include multiplicity information.
+
+\subsection{Anchor conventions (non-optimization rule)}
+If the encoding has a gauge-like offset (e.g.\ an ``anchor'' descriptor for a reference particle),
+then the anchor is chosen by \emph{explicit convention} and held fixed across runs. Anchors are not
+searched over. When multiple anchor conventions are compared, each is treated as its own preregistered
+analysis and results are reported side-by-side.
+
+\section{Null ensembles and significance discipline}
+\label{sec:nulls}
+A diagnostic program can always ``find patterns'' if it is allowed to move goalposts. To limit this,
+we define null ensembles upfront.
+
+\subsection{Null ensemble examples}
+Examples of preregisterable nulls (choose one or more and fix them):
+\begin{enumerate}
+\item \textbf{Permutation null:} random permutation of the mapping between observed masses and labels
+within the same class (e.g.\ leptons among leptons).
+\item \textbf{Log-jitter null:} multiply each $m_{\mathrm{exp}}$ by $\exp(\eta)$ with $\eta$ drawn i.i.d.\
+from a zero-mean distribution with preregistered width.
+\item \textbf{Class-preserving shuffle:} randomize within predefined blocks (charged leptons, gauge bosons,
+heavy quarks, etc.).
+\end{enumerate}
+The null must preserve whatever gross constraints are deemed physically unavoidable (e.g.\ rough scale
+separation), but must break the specific alignment being tested.
+
+\subsection{Reporting discipline}
+A minimal reporting bundle for each analysis includes:
+\begin{itemize}
+\item the chosen null ensemble definition and random seed policy;
+\item the bounds $\mathcal{B}$ and tolerance(s) $\tau$;
+\item per-observable $(\epsilon_{i,\min}, N_i(\tau))$ and any deduplicated counts;
+\item the distribution of these metrics under the null;
+\item a statement of whether the observed outcome lies in a prespecified tail region.
+\end{itemize}
+We emphasize: this is not an attempt to extract a universal ``$p$-value of nature''. It is a disciplined
+check against post-hoc storytelling.
+
+\section{Stability and robustness tests}
+\label{sec:robustness}
+A signal that vanishes under reasonable updates is not persuasive. Therefore preregistered robustness tests include:
+
+\begin{enumerate}
+\item \textbf{Input updates:} rerun with updated PDG values and uncertainties, with changes logged.
+\item \textbf{Scheme and scale:} for quantities with running/scheme dependence (e.g.\ quark masses),
+rerun at multiple standard choices (preregistered) and report stability of both $\epsilon_{i,\min}$ and $N_i$.
+\item \textbf{Bound expansion:} if $\mathcal{B}$ is expanded, report how multiplicities change; claims must not rely on a single cherry-picked region.
+\end{enumerate}
+
+A robust pattern should show persistence: small changes to inputs should not radically change which observables
+are ``special'', nor should it require fragile choices of bounds.
+
+\section{What counts as a prediction}
+\label{sec:prediction}
+The program is only scientifically compelling if it can make statements that were not tuned to existing data.
+
+We therefore define a prediction as any quantitative statement (interval or discrete set) that satisfies:
+\begin{enumerate}
+\item It is written \emph{before} the relevant measurement/discovery (timestamped).
+\item It is generated by the preregistered pipeline without additional degrees of freedom.
+\item It includes a pass/fail criterion (e.g.\ ``excluded if outside interval'' or ``excluded if multiplicity exceeds threshold'').
+\end{enumerate}
+
+The program explicitly allows \emph{postdictions} (fits to known data) as diagnostics, but they do not count
+as predictions.
+
+\section{Make-or-break tests and termination criteria}
+\label{sec:termination}
+This section states what outcomes terminate the program (within the present encoding family).
+
+\subsection{Termination criteria}
+Any one of the following should be treated as decisive failure:
+\begin{enumerate}
+\item \textbf{Null indistinguishability:} diagnostic metrics under data are statistically indistinguishable from the null ensemble across multiple independent reruns and reasonable robustness checks.
+\item \textbf{Multiplicity blow-up:} apparent ``fits'' are ubiquitous (large $N_i(\tau)$) and do not show meaningful separation from null multiplicities.
+\item \textbf{Non-robustness:} the ``signal'' appears only for a narrow, unphysical choice of scheme/scale/bounds, or flips unpredictably under minor updates.
+\item \textbf{Prediction failure:} preregistered predictions fail cleanly by their own criteria.
+\end{enumerate}
+
+\subsection{Minimal deliverables for audit}
+Before any external submission, the program should provide:
+(i) the dataset used (with citations to sources),
+(ii) deterministic scripts that regenerate all tables/figures,
+(iii) a single command build for each paper, and
+(iv) archived preregistrations (tagged releases or hashes).
+
+\section{Position in the 7--9 chain}
+Paper~VII established diagnostic phenomenology: look for structure under disciplined controls.
+Paper~VIII provides the falsifiability contract: what we count, what we report, and how the program can fail.
+Paper~IX will test extension: whether the same low-description-length structure can constrain mixing and CP
+observables without introducing extra flexibility.
+
+\section{Conclusion}
+This paper does not assert a new dynamical mechanism. It specifies a falsifiable, reproducible protocol for evaluating
+whether an arithmetic/geometric description of low description length is present in the Standard Model spectrum and
+survives robustness checks. If the protocol fails, the program should be retired or revised at the level of its encoding,
+not rescued by post-hoc parameter expansion.
+
+\bibliographystyle{plain}
+% \bibliography{../shared/references}
+
+\end{document}

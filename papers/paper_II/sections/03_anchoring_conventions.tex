@@ -1,0 +1,77 @@
+﻿\section{Anchoring conventions}
+\label{sec:anchoring_conventions}
+
+The encoding map defined in Section~\ref{sec:encoding_map} depends on a single reference scale $x_0$.
+This section specifies how anchors are chosen, what freedom remains in that choice, and how anchor
+dependence is controlled and audited throughout the analysis.
+
+The purpose of this section is not to argue for a particular anchor, but to ensure that anchor choices
+are explicit, reproducible, and incapable of being adjusted post hoc to improve outcomes.
+
+\subsection{Definition of an anchor}
+
+An \emph{anchor} is a fixed, positive-valued reference scale $x_0$ expressed in physical units.
+Given $x_0$, all observables $x$ are mapped to logarithmic coordinates via
+Eq.~\eqref{eq:encoding_def}.
+
+Anchors are chosen from the same domain as the observables being encoded.
+In particular, no auxiliary or derived scale is introduced.
+Each anchor must therefore correspond to a directly measured quantity or an externally fixed
+reference that is stated explicitly.
+
+\subsection{Global versus sector-specific anchors}
+
+Two classes of anchoring are permitted within the framework:
+\begin{enumerate}
+\item \emph{Global anchoring}, in which a single $x_0$ is used for all observables in a given scan.
+\item \emph{Sector-specific anchoring}, in which distinct anchors are used for disjoint sets of
+observables (e.g.\ quark versus lepton sectors), provided that each choice is declared in advance.
+\end{enumerate}
+
+The present paper does not privilege either choice.
+Instead, the anchoring strategy is treated as an input to the scan protocol and is included among the
+parameters subject to bounded exploration and audit.
+
+\subsection{Anchor shifts and degeneracy}
+
+Changing the anchor from $x_0$ to $x_0'$ induces a uniform translation in logarithmic coordinates:
+\begin{equation}
+\Delta'(x) \;=\; \Delta(x) + \frac{\log(x_0/x_0')}{\log \lambda}.
+\end{equation}
+
+Consequently, relative separations $\Delta(x_i)-\Delta(x_j)$ are invariant under anchor shifts, while
+absolute coordinates are not.
+Any apparent integer alignment that depends sensitively on the anchor choice must therefore be
+distinguished from anchor-invariant structure.
+
+This observation motivates two safeguards used throughout the analysis:
+\begin{itemize}
+\item Anchor choices are restricted to a bounded, pre-specified set.
+\item All reported diagnostics include the anchor value used to generate them.
+\end{itemize}
+
+\subsection{Uniqueness and failure modes}
+
+An anchor is considered \emph{admissible} if it satisfies both of the following:
+\begin{enumerate}
+\item The encoded coordinates $\Delta(x)$ lie within the scan bounds defined in
+Section~\ref{sec:bounded_scan_protocol}.
+\item Small perturbations of the anchor within its declared uncertainty do not induce qualitative
+changes in scan outcomes (e.g.\ large shifts in best-fit integer assignments).
+\end{enumerate}
+
+Anchors that violate either condition are rejected.
+Such rejection is treated as a diagnostic outcome rather than a failure of the framework.
+In particular, the absence of an admissible anchor is itself a falsifying signal for any proposed
+discrete organization.
+
+\subsection{Separation from interpretation}
+
+No physical interpretation is attached to the anchor scale in this paper.
+Anchors serve solely as coordinate references.
+Any attempt to interpret an anchor dynamically or geometrically is deferred to later papers and is
+conditional on the diagnostic results reported under the conventions established here.
+
+By enforcing explicit anchoring rules at this stage, the framework prevents silent shifts of
+reference scales and ensures that all downstream structure is traceable to declared inputs rather than
+implicit choices.

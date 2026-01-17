@@ -1,0 +1,103 @@
+% ============================================================
+% Paper_VII.tex — Phenomenological Diagnostics and Interpretation
+% Standalone-compilable version
+% ============================================================
+
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{float}
+
+\geometry{margin=1in}
+
+\title{\textbf{Paper VII: Phenomenological Diagnostics and Structural Interpretation}}
+\author{Marvin Gentry\\Independent Researcher}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We develop phenomenological diagnostics designed to distinguish genuine low-description-length structure in the Standard Model mass spectrum from coincidental numerical fit. The emphasis is on pre-registered procedures, multiplicity/degeneracy reporting, stability under input variation, and cross-validation against null ensembles. These diagnostics serve as a methodological bridge between the empirical mapping (Papers III--VI) and any stronger theoretical claims.
+\end{abstract}
+
+\section{Phenomenological diagnostics and structural interpretation}
+\label{sec:phen_dx}
+
+\subsection{Purpose and scope}
+This paper specifies diagnostic tests that any candidate discrete lattice/encoding of the Standard Model masses must pass to be considered informative rather than merely descriptive. The aim is not to maximize fit quality, but to quantify (i) \emph{how many} solutions achieve comparable fit, (ii) how sensitive solutions are to perturbations of inputs and conventions, and (iii) whether the observed compression is exceptional relative to appropriate null models.
+
+\subsection{Objects of interest}
+We consider mappings of particle masses (and optionally mixing observables) into a discrete encoding, e.g. integer triples or short words in a finitely generated structure. The diagnostic questions are:
+\begin{enumerate}
+\item \textbf{Multiplicity:} how many encodings within the admissible bounds satisfy a given tolerance?
+\item \textbf{Stability:} do solutions persist under reasonable variations (running masses, scheme choices, uncertainties)?
+\item \textbf{Compression:} what is the effective description length of the solution family?
+\item \textbf{Null comparison:} how often do comparable fits arise in ensembles that preserve only coarse features of the data?
+\end{enumerate}
+
+\subsection{Multiplicity and degeneracy reporting}
+\label{sec:multiplicity}
+A best-fit alone is not evidential if the solution set is large. Therefore, every reported fit must include:
+\begin{itemize}
+\item the search bounds used (explicit ranges for each discrete parameter),
+\item the tolerance definition (e.g. max relative log-error),
+\item the number of distinct solutions within tolerance,
+\item and a deduplication rule (e.g. quotienting by obvious gauge-like symmetries or phase relabelings).
+\end{itemize}
+When possible, report \emph{the full set} of solutions (or a hash/serialized list) rather than a single representative.
+
+\subsection{Stability under convention changes}
+\label{sec:stability}
+Diagnostics must separate physical structure from coordinate artifacts. In particular:
+\begin{enumerate}
+\item \textbf{Anchor dependence:} if the framework uses an anchoring convention (e.g. fixing the electron triple), rerun with alternative anchors and quantify how solution families transform.
+\item \textbf{Scale dependence:} repeat using running masses at different reference scales where meaningful, and note which encodings survive.
+\item \textbf{Uncertainty propagation:} sample masses within quoted uncertainties and measure the persistence probability of each candidate solution family.
+\end{enumerate}
+
+\subsection{Pre-registration and overfitting control}
+To reduce researcher degrees of freedom, we recommend a pre-registered protocol:
+\begin{enumerate}
+\item Fix the parameterization class and bounds before scanning.
+\item Fix the objective function (error metric) and tolerance thresholds.
+\item Fix the dataset version (PDG snapshot, scheme choices) and record it.
+\item Report all results meeting the threshold, not only the best.
+\end{enumerate}
+Any later changes (new bounds, new objective, new anchor choice) must be recorded as a new experiment rather than silently merged.
+
+\subsection{Null ensembles and significance}
+\label{sec:nulls}
+Significance must be assessed against null models that preserve relevant coarse structure. Examples:
+\begin{enumerate}
+\item \textbf{Log-order preserving jitter:} perturb $\log m_i$ by random offsets with controlled variance.
+\item \textbf{Rank-preserving resamples:} preserve ordering but randomize spacings subject to matching mean/variance.
+\item \textbf{Physics-aware perturbations:} vary inputs within measurement and scheme uncertainties.
+\end{enumerate}
+For each null ensemble, compute the distribution of (i) best-fit error, (ii) multiplicity within tolerance, and (iii) description-length proxies. Evidence requires that the observed data lie in the tail of these distributions under clearly stated choices.
+
+\subsection{Description-length proxies}
+Rather than treating a single numeric coincidence as a “prediction,” emphasize compression: how succinctly can the mapping be specified?
+Operational proxies include:
+\begin{itemize}
+\item number of free discrete parameters needed per particle,
+\item size of the admissible solution set (multiplicity),
+\item and stability under perturbations (persistence probability).
+\end{itemize}
+A compelling model should reduce degrees of freedom while maintaining stability.
+
+\subsection{Limitations}
+These diagnostics do not on their own establish a microscopic mechanism for mass generation. They are designed to prevent over-interpretation and to guide which patterns merit deeper theoretical pursuit. They also depend on the choice of null ensemble; therefore, multiple ensembles should be used and reported.
+
+\subsection{Position within the overall program}
+Paper VII provides the methodological bridge between the empirical mapping and the eventual synthesis/prediction roadmap. It defines what counts as robust structure and supplies the checks that later papers must satisfy before stronger claims are advanced.
+
+\section{Conclusion}
+A lattice-like encoding of masses is only scientifically useful if it survives multiplicity accounting, stability tests, and null-ensemble comparison. The diagnostics here formalize that requirement and are intended to be carried forward as non-negotiable reporting standards throughout the Golden Unification program.
+
+\end{document}

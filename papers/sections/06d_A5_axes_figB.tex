@@ -1,0 +1,54 @@
+% ============================================================
+% 06d_A5_axes_figB.tex
+% Figure B: schematic A5 symmetry axes (icosa/dodeca intuition)
+% ============================================================
+
+\subsection{\texorpdfstring{$A_{5}$}{A5} as icosahedral/dodecahedral rotational symmetry: an intuitive axis picture}
+\label{subsec:A5_axes_picture_figB}
+
+For reader orientation, we record the standard geometric identification:
+the alternating group $A_{5}$ is isomorphic to the orientation-preserving rotational symmetry group of the
+icosahedron (equivalently, the dodecahedron). This gives an intuitive geometric meaning to phrases like
+``$A_{5}$-structured'' or ``residual $Z_{5}$'': the relevant discrete structures are naturally organized around
+the 5-fold, 3-fold, and 2-fold symmetry axes.
+
+In holonomy language, discrete phase behavior can be associated with transport around loops linked with
+these symmetry-defining axes. The figure below is schematic; it is not a full polyhedron rendering, but it
+captures the group-theoretic content needed for a conservative narrative.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=1.0, >=Latex]
+
+% Outer circle: "polyhedron seen from outside"
+\draw[thick] (0,0) circle (2.2);
+
+% Representative symmetry axes
+% 5-fold axis
+\draw[very thick] (0,-2.2) -- (0,2.2);
+\node[align=center] at (0,2.55) {\small 5-fold axis};
+
+% 3-fold axis
+\draw[thick] ({-2.2*cos(30)},{-2.2*sin(30)}) -- ({2.2*cos(30)},{2.2*sin(30)});
+\node[align=center] at (2.6,1.3) {\small 3-fold};
+
+% 2-fold axis
+\draw[thick] ({-2.2*cos(90)},{-2.2*sin(90)}) -- ({2.2*cos(90)},{2.2*sin(90)});
+\node[align=center] at (2.8,0.0) {\small 2-fold};
+
+% A loop around the 5-fold axis
+\draw[very thick, -{Latex[length=3mm]}] (0.9,0.0) arc[start angle=0,end angle=330,radius=0.9];
+\node at (0.0,-0.9) {\small loop around 5-fold axis};
+
+% Label A5
+\node[align=center] at (0,-2.75) {\small $A_{5} \cong \mathrm{Rot}(\text{icosahedron/dodecahedron})$};
+
+\end{tikzpicture}
+\caption{\textbf{Geometric meaning of \(A_{5}\) structure (schematic).}
+The group \(A_{5}\) is isomorphic to the orientation-preserving rotational symmetry group of the icosahedron/dodecahedron.
+This provides an intuitive geometric interpretation for ``\(A_{5}\)-structured'' residual symmetries:
+discrete 5-fold, 3-fold, and 2-fold axes organize admissible identifications.
+In holonomy language, transporting data around loops linked with these axes can yield phase behavior sensitive to orientation.
+}
+\label{fig:A5_axes}
+\end{figure}

@@ -1,0 +1,155 @@
+﻿% Paper_VI.tex — Robustness, Scheme Dependence, and Statistical Controls
+% ====================================================================
+% EPJC-positioned methodological paper
+% Compile from: ...\Golden_Unification\papers
+
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+
+% --- Shared macros ---
+\input{../shared/macros.tex}
+
+% --- Local safety ---
+\providecommand{\eps}{\varepsilon}
+\providecommand{\Order}{\mathcal{O}}
+\providecommand{\Z}{\mathbb{Z}}
+
+\title{Robustness and Statistical Controls for a Discrete Logarithmic Organization of Flavor Data}
+\author{[Author Name]}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We analyze the robustness and statistical interpretation of an anchored discrete logarithmic organization of Standard Model flavor observables. The framework maps particle masses to integer lattice points through a fixed logarithmic index and extends to mixing phases via reproducible scan procedures. Here we address scheme dependence, multiplicity, scan-bound sensitivity, and null-hypothesis controls. Our goal is not to strengthen the underlying physical interpretation, but to establish which features of the observed structure persist under conservative variations of inputs and methodology. The results clarify which aspects of the organization are nontrivial and which remain contingent.
+\end{abstract}
+
+\section{Motivation and scope}
+\label{sec:motivation}
+Discrete fits to continuous data are vulnerable to overinterpretation unless accompanied by explicit controls. This paper therefore focuses on \emph{methodological validation} rather than model extension. Specifically, we examine:
+\begin{enumerate}
+\item dependence on mass conventions and renormalization schemes,
+\item sensitivity to integer scan bounds and anchoring choices,
+\item multiplicity and degeneracy of lattice representations,
+\item null-model comparisons and baseline expectations.
+\end{enumerate}
+All analyses are designed to be reproducible from repository scripts, with no manual tuning once bounds and anchors are declared.
+
+\section{Mass conventions and scheme dependence}
+\label{sec:scheme}
+Quark masses are not physical observables in the same sense as charged-lepton masses; they depend on the renormalization scheme and scale. To avoid implicit cherry-picking, the lattice analysis must therefore satisfy two minimal conditions:
+\begin{enumerate}
+\item the same lattice parameters must be applied uniformly across particle types,
+\item qualitative conclusions (e.g.\ existence of a low-error lattice description) must persist under reasonable scheme changes.
+\end{enumerate}
+
+In practice, the anchored lattice model is evaluated using a declared set of mass inputs (e.g.\ PDG central values at specified scales). The integer scan bounds are fixed \emph{before} fitting. Any change in scheme or scale constitutes a new dataset, not a refit of the same one.
+
+\paragraph{Key point.}
+The framework does not claim scheme invariance of integer assignments $(a,b,c)$, but rather robustness of the \emph{existence} and \emph{sparseness} of acceptable solutions.
+
+\section{Anchoring and normalization control}
+\label{sec:anchoring}
+Anchoring fixes the overall logarithmic normalization by assigning a reference triple $(a_e,b_e,c_e)$ such that $q_e=0$. This removes a continuous degree of freedom that would otherwise trivialize the exponential mapping.
+
+To test anchoring sensitivity, one may:
+\begin{itemize}
+\item shift the anchor by an integer lattice automorphism,
+\item re-anchor using a different reference particle (e.g.\ muon),
+\item compare relative multiplicity and error distributions.
+\end{itemize}
+
+A robust structure is one in which:
+\begin{enumerate}
+\item the error distribution remains sharply peaked near zero for a small subset of lattice points,
+\item multiplicity does not explode under reasonable anchor shifts.
+\end{enumerate}
+
+\section{Multiplicity, degeneracy, and deduplication}
+\label{sec:multiplicity}
+A central diagnostic is the number of integer triples producing acceptable fits within a declared tolerance. We distinguish:
+\begin{itemize}
+\item \textbf{raw multiplicity:} total number of $(a,b,c)$ solutions,
+\item \textbf{$q$-deduplicated multiplicity:} number of distinct $q$ values,
+\item \textbf{effective uniqueness:} whether a single $q$ dominates within tolerance.
+\end{itemize}
+
+Reporting only the best-fit triple is insufficient; multiplicity must be reported alongside the error. In the anchored mass analysis, this information is included explicitly in the auto-generated results block:
+
+\medskip
+\begin{center}
+\begin{minipage}{0.95\linewidth}
+% DUPLICATE REMOVED: \input{../shared/paperIII_results.tex}
+\end{minipage}
+\end{center}
+\medskip
+
+\paragraph{Interpretation.}
+Low raw multiplicity and $q$-level uniqueness indicate that the lattice is not merely interpolating noise. High multiplicity, by contrast, weakens any structural claim.
+
+\section{Scan bounds and pre-registration}
+\label{sec:bounds}
+Discrete scans are highly sensitive to domain size. To prevent implicit tuning, all scans obey the following rules:
+\begin{enumerate}
+\item bounds on $(a,b,c)$ are declared prior to scanning,
+\item the same bounds are applied to all particles in a given run,
+\item expanding bounds requires explicit reporting and justification.
+\end{enumerate}
+
+The purpose of bounded scans is not to find \emph{some} integer solution, but to test whether \emph{few} solutions exist in a compact domain.
+
+\section{Null models and baseline expectations}
+\label{sec:null}
+To assess nontriviality, lattice results must be compared against null hypotheses. Suitable baselines include:
+\begin{itemize}
+\item random reassignment of masses within logarithmic bins,
+\item replacement of $\phig$ with a generic irrational base,
+\item random integer coefficients in $q(a,b,c)$ with similar magnitude.
+\end{itemize}
+
+A meaningful structure should outperform such baselines in at least one of:
+\begin{enumerate}
+\item lower typical error at fixed multiplicity,
+\item lower multiplicity at fixed error tolerance,
+\item greater stability under input perturbations.
+\end{enumerate}
+
+\section{Mixing-sector verification: robustness}
+\label{sec:mixing_robust}
+The CKM and PMNS phase scans reported previously are deterministic functions of the chosen inputs and match criterion. Robustness here means:
+\begin{itemize}
+\item the location of the best-fit phase does not depend sensitively on scan resolution,
+\item small variations in $(s_{12},s_{23},s_{13})$ do not induce large jumps in $\delta$,
+\item the matching criterion (e.g.\ $\sin$-matching vs.\ degree matching) yields consistent results.
+\end{itemize}
+
+The current implementation satisfies these minimal checks at the grid resolutions tested. Further work should quantify stability under updated global fits.
+
+\section{Limitations}
+\label{sec:limitations}
+Several limitations must be emphasized:
+\begin{enumerate}
+\item the framework is descriptive, not yet dynamical,
+\item integer assignments may drift under scheme changes,
+\item statistical significance depends on the chosen null ensemble,
+\item no new particle is predicted unambiguously at this stage.
+\end{enumerate}
+
+These limitations are not defects but boundary conditions on interpretation.
+
+\section{Conclusions}
+\label{sec:conclusions}
+This paper establishes that the discrete logarithmic lattice framework admits a controlled, reproducible statistical analysis. When anchoring, scan bounds, and multiplicity are handled transparently, the observed organization of flavor data cannot be dismissed as a trivial artifact without reference to specific null models. At the same time, the results stop short of requiring a new physical mechanism. The framework thus occupies a well-defined intermediate position: stronger than numerology, weaker than a full theory, and suitable for incremental falsification.
+
+\section*{Reproducibility note}
+All numerical tables and diagnostics referenced here are generated by scripts under \texttt{code/} and written to \texttt{shared/}. No manual editing of results is required or permitted.
+
+\end{document}

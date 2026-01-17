@@ -1,0 +1,139 @@
+﻿% ============================================================
+% Paper_III.tex â€” Empirical results: discrete log-lattice scan
+% Golden Unification program (standalone compilable paper)
+% ============================================================
+
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{float}
+
+\geometry{margin=1in}
+
+\title{\textbf{Paper III: Empirical Log-Lattice Structure in the Standard Model Mass Spectrum}\\
+\large Scan-based results, multiplicity, and anchored normalization}
+\author{[Your Name]}
+\date{\today}
+
+% --- convenience macros ---
+\newcommand{\phiG}{\varphi}
+\newcommand{\qe}{q_e}
+\newcommand{\eps}{\epsilon}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report scan-based empirical results for a discrete log-lattice description of selected Standard Model masses.
+Working in logarithmic space with a golden-ratio base $\phiG=(1+\sqrt{5})/2$, we search integer triples $(a,b,c)\in\mathbb{Z}^3$
+that minimize relative log-error for each particle under an exponent model of the form
+$\log_{\phiG}(m/m_0)=q/4$ with $q = 8a+15b+24c$ (anchored normalization). We provide (i) best-fit triples within bounded regions,
+(ii) multiplicity counts (uniqueness versus degeneracy when deduplicating by $q$), and (iii) stability notes and falsifiability criteria
+for avoiding overfit. The present paper is deliberately empirical: it documents what the scans return, how sensitive those results are,
+and what constitutes a prediction rather than a fit.
+\end{abstract}
+
+\section{Scope and positioning}
+This paper documents \emph{results and diagnostics} produced by a deterministic scan. It does \emph{not} claim a derived mass-generation
+mechanism. Its purpose is to make the empirical claims legible, reproducible, and reviewable: what fit quality is achieved, what the
+solution multiplicity is, and how strongly the output depends on anchoring conventions and scan bounds.
+
+\section{Model, anchoring, and error metric}
+Let $\phiG=(1+\sqrt{5})/2$. For a particle of mass $m$ we consider a discrete exponent model
+\begin{equation}
+\log_{\phiG}\!\left(\frac{m}{m_0}\right) \approx \frac{q}{4}, \qquad
+q := 8a + 15b + 24c,\quad (a,b,c)\in\mathbb{Z}^3 .
+\label{eq:model}
+\end{equation}
+We use an \emph{anchored} convention in which the electron defines the reference exponent by enforcing $q_e=0$ for the electron,
+i.e. a chosen triple $(a_e,b_e,c_e)$ sets the additive offset so that the electron is exactly fit by construction.
+
+To measure fit quality we use a relative log-error:
+\begin{equation}
+\eps := \frac{\log(m_{\text{pred}}/m_{\text{exp}})}{\log(m_{\text{exp}})} ,
+\label{eq:error}
+\end{equation}
+or the equivalent relative discrepancy in $\log$-space (the implementation details are fixed by the scan script and recorded in the results block).
+We report $\eps$ for best-fit solutions and we also report multiplicity counts: how many distinct integer solutions exist within bounds
+at a stated tolerance, optionally deduplicated by $q$.
+
+\section{Scan protocol}
+The scan searches integer triples $(a,b,c)$ in a bounded rectangular region of $\mathbb{Z}^3$ and selects the minimizer of $|\eps|$ per particle.
+To diagnose overfitting risk, we also count how many triples satisfy $|\eps|\le \eps_{\max}$ within the scan bounds, with a deduplication option:
+\begin{itemize}
+\item \textbf{Raw multiplicity:} number of satisfying $(a,b,c)$.
+\item \textbf{Unique($q$) multiplicity:} number of satisfying solutions after deduplicating by the derived exponent $q$.
+\end{itemize}
+Large multiplicity signals potential non-uniqueness and motivates reporting \emph{solution sets} rather than a single best triple.
+
+\section{Results block (auto-generated)}
+\label{sec:resultsblock}
+The following block is written by the repository script into \texttt{shared/paperIII\_results.tex}.
+It contains the authoritative scan bounds, anchor triple, tolerance settings, and the produced tables.
+
+\vspace{0.5em}
+\noindent\textbf{Auto-generated results (do not edit by hand):}
+\vspace{0.25em}
+
+\input{../shared/paperIII_results.tex}
+
+\section{Visualizations}
+This repository also stores figure outputs under \texttt{figures/}. If the PDFs exist, they can be included directly.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\linewidth]{../figures/mass_fit_log.pdf}
+\caption{Log-space mass fit visualization (placeholder or generated).}
+\label{fig:massfitlog}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\IfFileExists{../figures/mass_residuals.pdf}{%
+  \includegraphics[width=0.95\columnwidth]{../figures/mass_residuals.pdf}%
+}{%
+  \fbox{\parbox{0.95\columnwidth}{\centering
+  Missing file: figures/mass_residuals.pdf\\
+  Run the figure generator to create it.}}%
+}
+\caption{Residuals in log-space (anchored scan).}
+\label{fig:massresid}
+\end{figure}
+
+\section{Interpretation and limitations}
+The scan output can show striking regularities; however, interpretation requires discipline:
+\begin{enumerate}
+\item \textbf{Anchoring is a convention.} An anchor triple fixes offsets and can shift which integer triples appear ``simple.''
+We therefore report the anchor explicitly and keep it fixed across runs unless stated.
+\item \textbf{Multiplicity matters.} A good best-fit is not compelling if thousands of solutions exist in the same bounds at the same tolerance.
+Any claim must therefore include uniqueness/multiplicity diagnostics.
+\item \textbf{Running and scheme dependence.} Quark masses and electroweak parameters depend on scale and renormalization scheme.
+A robust regularity should persist under reasonable choices of inputs (within uncertainties) and updated PDG values.
+\end{enumerate}
+
+\section{Falsifiability and preregistration rules}
+To prevent post-hoc tuning, we adopt the following rules for future work:
+\begin{itemize}
+\item Fix scan bounds and tolerance \emph{before} looking at new targets.
+\item Report \emph{all} solutions within tolerance (or at least the multiplicity and the full set of distinct $q$ values).
+\item Treat any parameter change (bounds, tolerance, anchor choice) as a new experiment and report it as such.
+\end{itemize}
+
+\section{Next steps}
+Immediate technical next steps for the repo (not claims about physics):
+\begin{enumerate}
+\item Replace placeholder PDFs with generated plots from the scan outputs.
+\item Emit CSV tables under \texttt{data/derived/} and build LaTeX tables from those deterministically.
+\item Extend the analysis to CKM/PMNS phases (handled in later papers) under identical reproducibility constraints.
+\end{enumerate}
+
+\end{document}
+
+
+

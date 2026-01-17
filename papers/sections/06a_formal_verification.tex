@@ -1,0 +1,25 @@
+\section{Formal verification and audit closure}
+\label{sec:formal_verification}
+
+This section summarizes the logical status of the verification results
+reported above and closes the audit loop for mixing observables.
+
+\subsection{Determinism and reproducibility}
+
+All verification steps are deterministic once inputs and conventions
+are declared. Independent implementations using the same inputs must
+reproduce the same CP-invariant values.
+
+\subsection{Degrees of freedom}
+
+No free parameters are introduced in the verification stage. All
+degrees of freedom are fixed prior to evaluation. This constraint
+is essential to falsifiability.
+
+\subsection{Audit status}
+
+The verification results satisfy the same audit criteria applied to
+the mass lattice: fixed conventions, bounded inputs, invariant
+diagnostics, and reproducibility.
+
+No additional claims are implied beyond this verified consistency.

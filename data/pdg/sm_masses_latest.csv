@@ -1,0 +1,13 @@
+key,pdg_name,mcid_1,mass_gev,mass_err_plus_gev,mass_err_minus_gev,width_gev,width_err_plus_gev,width_err_minus_gev,notes
+W_boson,W                   +,24,80.369,0.013,-0.013,2.14,0.05,-0.05,W boson
+Z_boson,Z                   0,23,91.188,0.002,-0.002,2.4955,0.0023,-0.0023,Z boson
+b_quark,"b(1)(1235)        0,+",10113,1.2295,0.0032,-0.0032,0.142,0.009,-0.009,quark mass is scheme/scale dependent
+c_quark,chi(c2)(3930)       0,100445,3.9225,0.001,-0.001,0.0352,0.0022,-0.0022,quark mass is scheme/scale dependent
+d_quark,"Delta(1232)  -,0,+,++",1114,1.232,0.002,-0.002,0.117,0.003,-0.003,quark mass is scheme/scale dependent
+electron,e                   -,11,0.00051099895,1.5e-13,-1.5e-13,0.0,0.0,-0.0,charged lepton
+higgs,H                   0,25,125.2,0.11,-0.11,0.0037,0.0019,-0.0014,Higgs boson
+muon,mu                  -,13,0.1056583755,2.3e-09,-2.3e-09,2.9959836e-19,3e-25,-3e-25,charged lepton
+s_quark,"Sigma(1660)     -,0,+",13112,1.66,0.02,-0.02,0.2,0.1,-0.1,quark mass is scheme/scale dependent
+t_quark,t                +2/3,6,172.56,0.31,-0.31,1.42,0.19,-0.15,quark mass is scheme/scale dependent
+tau,tau                 -,15,1.77693,9e-05,-9e-05,2.267e-12,4e-15,-4e-15,charged lepton
+u_quark,Upsilon(2)(1D)      0,20555,10.1637,0.0014,-0.0014,,,,quark mass is scheme/scale dependent

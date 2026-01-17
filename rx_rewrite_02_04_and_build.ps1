@@ -1,0 +1,181 @@
+# ============================================================
+# RX: Rewrite Sections 02–04 (lattice, results, discussion)
+# and rebuild MASTER / CORE_MASTER if present.
+# ============================================================
+
+$Root   = "C:\Users\Your Name Here\Desktop\Golden_Unification"
+$Papers = Join-Path $Root "papers"
+$Secs   = Join-Path $Papers "sections"
+
+function Ensure-Dir {
+  param([Parameter(Mandatory=$true)][string]$Path)
+  if (-not (Test-Path -LiteralPath $Path)) { New-Item -ItemType Directory -Path $Path | Out-Null }
+}
+
+function Write-UTF8 {
+  param([Parameter(Mandatory=$true)][string]$Path,
+        [Parameter(Mandatory=$true)][string]$Content)
+  $Content | Set-Content -Path $Path -Encoding UTF8
+  Write-Host "Wrote file: $Path" -ForegroundColor Green
+}
+
+Ensure-Dir $Secs
+
+# ------------------------------------------------------------
+# 02_lattice.tex
+# ------------------------------------------------------------
+$sec02 = @'
+\section{Discrete lattice formulation and anchoring}
+\label{sec:lattice}
+
+We formalize the empirical observation that several Standard Model mass scales appear more regular when expressed in logarithmic coordinates. Define the golden-ratio logarithmic coordinate
+\begin{equation}
+\ell(m) \equiv \log_{\varphi}\!\left(\frac{m}{m_e}\right),
+\end{equation}
+where $\varphi=(1+\sqrt{5})/2$ and $m_e$ is the electron mass. This choice fixes a dimensionless coordinate system; it does not assume a mass-generation mechanism.
+
+\subsection{Lattice definition}
+We introduce an integer lattice $(a,b,c)\in\mathbb{Z}^3$ with a linear form
+\begin{equation}
+q(a,b,c) \equiv 8a + 15b + 24c,
+\label{eq:q_def}
+\end{equation}
+and define the candidate mass map
+\begin{equation}
+\frac{m_{\mathrm{lat}}(a,b,c)}{m_e} \equiv \varphi^{q(a,b,c)/4}.
+\label{eq:mass_law}
+\end{equation}
+Equivalently, the lattice induces a discrete subset of logarithmic coordinates
+\begin{equation}
+\ell_{\mathrm{lat}}(a,b,c) = \frac{q(a,b,c)}{4}.
+\end{equation}
+Thus the model constrains $\ell$ to lie on parallel planes in $\mathbb{Z}^3$ (level sets of $q$), with spacing fixed by the coefficients in Eq.~\eqref{eq:q_def}.
+
+\subsection{Anchoring and the gauge freedom}
+Eq.~\eqref{eq:mass_law} has an overall discrete scaling freedom: shifting $q \mapsto q+4k$ rescales all masses by $\varphi^{k}$ and is physically irrelevant unless a reference is fixed. We therefore impose an anchor by selecting one reference triple $(a_e,b_e,c_e)$ such that
+\begin{equation}
+q(a_e,b_e,c_e)=0,
+\end{equation}
+which enforces $m_{\mathrm{lat}}(a_e,b_e,c_e)=m_e$. In the present ``anchored'' convention, the electron defines the reference state.
+
+\subsection{Fit criterion and tolerance}
+Given an experimental mass $m_{\mathrm{exp}}$, define the logarithmic residual
+\begin{equation}
+\epsilon(a,b,c) \equiv \log_{\varphi}\!\left(\frac{m_{\mathrm{lat}}(a,b,c)}{m_{\mathrm{exp}}}\right)
+= \frac{q(a,b,c)}{4} - \log_{\varphi}\!\left(\frac{m_{\mathrm{exp}}}{m_e}\right).
+\end{equation}
+We report best fits by minimizing $|\epsilon|$ over bounded search regions in $(a,b,c)$, and we also report multiplicities: the number of distinct solutions within a tolerance band $|\epsilon|\le \epsilon_{\max}$. To avoid a misleading notion of uniqueness, we distinguish between:
+(i) \emph{raw} multiplicity (distinct triples), and
+(ii) multiplicity \emph{deduplicated by $q$} (distinct planes), since Eq.~\eqref{eq:mass_law} depends on $(a,b,c)$ only through $q$.
+
+\subsection{Reproducibility}
+All scans and tables are generated deterministically from repository scripts (e.g.\ \texttt{code/compute\_mass\_errors\_v2.py}). The paper treats the lattice as an empirical organizing structure; it is not a substitute for renormalization-group running, threshold corrections, or Higgs/Yukawa dynamics. Those questions are separated from the present claims, which are restricted to the existence and stability of the discrete-log alignment under well-specified conventions.
+'@
+
+Write-UTF8 (Join-Path $Secs "02_lattice.tex") $sec02
+
+# ------------------------------------------------------------
+# 03_results.tex
+# ------------------------------------------------------------
+$sec03 = @'
+\section{Empirical alignment and multiplicity structure}
+\label{sec:results}
+
+This section summarizes what the lattice does and does not explain at the current stage. The central question is whether Eq.~\eqref{eq:mass_law}, with no continuous fitting parameters once anchored, selects a nontrivial discrete subset of logarithmic masses that intersect observed Standard Model scales with small residuals.
+
+\subsection{Best-fit residuals}
+For each particle in the audited set, we compute the minimum $|\epsilon|$ over a bounded integer domain and record the corresponding best-fit $(a,b,c)$ and $q$. The resulting error table is externalized and inserted verbatim to prevent transcription errors:
+\begin{itemize}
+\item \texttt{shared/paperIII\_results.tex} (anchored mass fits and residuals),
+\item generated by \texttt{code/compute\_mass\_errors\_v2.py}.
+\end{itemize}
+
+Two points are essential for interpretation:
+\begin{enumerate}
+\item The lattice fixes a \emph{discrete} set of admissible log-masses. A small residual is therefore nontrivial only if the lattice is not excessively fine-grained over the scanned region.
+\item Best-fit residuals must be interpreted together with \emph{multiplicity}: how many distinct $q$-values (or triples) achieve a comparable residual within the same bounds.
+\end{enumerate}
+
+\subsection{Multiplicity and overcompleteness checks}
+We compute multiplicities under explicit bounds on $(a,b,c)$ and a tolerance $|\epsilon|\le \epsilon_{\max}$. Reporting multiplicity deduplicated by $q$ is mandatory because the map depends only on $q$. In particular:
+\begin{itemize}
+\item ``unique($q$)'' means exactly one distinct $q$ matches within tolerance in the scanned region;
+\item ``multiple($q$)'' means more than one $q$ matches, signaling either genuine degeneracy or an overly permissive tolerance/bound choice.
+\end{itemize}
+This is the correct diagnostic for whether the lattice behaves like a constraint (few admissible planes) or like a dense net (many planes).
+
+\subsection{Scope of claims}
+At this stage we treat the lattice as a \emph{phenomenological coordinate system} that compresses part of the mass spectrum into a low-description-length rule. The results currently support the claim that:
+\begin{quote}
+Within the declared scan bounds, the anchored lattice yields small logarithmic residuals for a nontrivial subset of audited Standard Model masses, with controlled multiplicity when deduplicated by $q$.
+\end{quote}
+We do \emph{not} yet claim a derived Yukawa sector, a mechanism for electroweak symmetry breaking, or a prediction of running masses across schemes. Those belong to the next layer of the program and must be developed separately.
+'@
+
+Write-UTF8 (Join-Path $Secs "03_results.tex") $sec03
+
+# ------------------------------------------------------------
+# 04_discussion.tex
+# ------------------------------------------------------------
+$sec04 = @'
+\section{Discussion: interpretation, stability, and next falsifiable steps}
+\label{sec:discussion}
+
+The lattice construction should be read as an empirical regularity statement in logarithmic coordinates. Its significance depends on (i) stability under reasonable convention changes, and (ii) whether it supports pre-registered predictions rather than post hoc fits.
+
+\subsection{Interpretation: geometric vs.\ purely numerical}
+There are two logically distinct interpretations:
+\begin{enumerate}
+\item \textbf{Geometric/algebraic interpretation.} The coefficients in $q(a,b,c)$ reflect an underlying discrete organizing structure (e.g.\ representation-theoretic data), which constrains the space of admissible mass scales without appearing as a low-energy symmetry of the Lagrangian.
+\item \textbf{Numerical coincidence interpretation.} The alignment is an artifact of choosing a particular base $\varphi$, scan bounds, or anchoring convention, and does not survive stability tests.
+\end{enumerate}
+The paper’s role is to separate these by defining explicit audits.
+
+\subsection{Stability audits}
+The following audits are mandatory and repository-backed:
+\begin{enumerate}
+\item \textbf{Anchor stability.} Re-anchor to a different reference state (or shift anchor within the null space of Eq.~\eqref{eq:q_def}) and verify that the induced $q$-assignments transform consistently.
+\item \textbf{Bound stability.} Expand scan bounds and confirm that ``unique($q$)'' cases remain unique, and that multiplicities do not explode.
+\item \textbf{Scheme/scale stability (future).} Replace pole masses with running masses at declared scales and repeat the audit. The program must specify which masses are compared and why.
+\end{enumerate}
+
+\subsection{Connection to CP violation (bridge to mixing sector)}
+A decisive advantage of the program is that it does not stop at masses: the same style of ``integer geometry + audit pipeline'' can be applied to mixing and CP phases. In Paper V we already have a complete end-to-end verification of the CKM phase via a holonomy-matching scan, and a structurally identical PMNS extension. Those results are emitted into LaTeX blocks and included verbatim:
+\begin{itemize}
+\item \texttt{shared/paperV\_mixing\_results.tex}, generated by \texttt{code/verify\_mixing.py}.
+\end{itemize}
+This provides a concrete falsifiability lever: the procedure is deterministic, and future global-fit updates can be propagated immediately through the same pipeline.
+
+\subsection{Immediate next steps (pre-registered)}
+To reduce the degrees of freedom and strengthen interpretability, the next iteration should pre-register:
+\begin{enumerate}
+\item the particle set under audit (exact list),
+\item the mass inputs (scheme, scale, uncertainties),
+\item scan bounds and tolerance $\epsilon_{\max}$,
+\item the exact uniqueness/multiplicity reporting standard (dedup by $q$),
+\item and the criterion for what counts as a successful prediction.
+\end{enumerate}
+This is the shortest route from ``pattern'' to a referee-proof claim.
+'@
+
+Write-UTF8 (Join-Path $Secs "04_discussion.tex") $sec04
+
+# ------------------------------------------------------------
+# Build MASTER and CORE_MASTER if present
+# ------------------------------------------------------------
+Push-Location $Papers
+
+if (Test-Path -LiteralPath ".\MASTER.tex") {
+  Write-Host "`nCompiling MASTER.tex..." -ForegroundColor Cyan
+  pdflatex -interaction=nonstopmode MASTER.tex | Out-Null
+  Write-Host "Build OK: papers\MASTER.pdf" -ForegroundColor Cyan
+}
+
+if (Test-Path -LiteralPath ".\CORE_MASTER.tex") {
+  Write-Host "`nCompiling CORE_MASTER.tex..." -ForegroundColor Cyan
+  pdflatex -interaction=nonstopmode CORE_MASTER.tex | Out-Null
+  Write-Host "Build OK: papers\CORE_MASTER.pdf" -ForegroundColor Cyan
+}
+
+Pop-Location
+Write-Host "`nDone." -ForegroundColor Green
