@@ -1,7 +1,4 @@
-% ============================================================
-% 06d_origami_inversion_figA.tex
-% Figure A: local patch + inversion + holonomy orientation flip
-% ============================================================
+
 
 \subsection{Origami vertex inversion as an orientation reversal: a holonomy toy model}
 \label{subsec:origami_inversion_holonomy_figA}
@@ -30,30 +27,26 @@ derivation of CKM/PMNS phases.
 \centering
 \begin{tikzpicture}[scale=1.0, >=Latex]
 
-% Left: a "pentagonal fan" with central vertex (origami patch)
 \coordinate (C) at (0,0);
 \foreach \k in {0,72,144,216,288}{
   \coordinate (P\k) at ({1.6*cos(\k)},{1.6*sin(\k)});
 }
-% triangles (fan)
+
 \foreach \k/\kp in {0/72,72/144,144/216,216/288,288/0}{
   \draw[thick] (C) -- (P\k) -- (P\kp) -- cycle;
 }
-% ring
+
 \draw[thick] (P0) -- (P72) -- (P144) -- (P216) -- (P288) -- cycle;
 
-% loop arrow around ring
 \draw[very thick, -{Latex[length=3mm]}]
   ($(P0)!0.55!(P72)$) arc [start angle=18, end angle=342, radius=1.05];
 
 \node at (0,-2.2) {\small (a) Local patch with loop $\gamma$};
 
-% Center: indicate inversion (push vertex through)
 \draw[->, very thick] (2.6,0.0) -- (4.2,0.0);
 \node at (3.4,0.35) {\small inversion};
 \node at (3.4,-0.35) {\small $z \mapsto -z$};
 
-% Right: same patch but label orientation-reversed loop (phase flip)
 \begin{scope}[shift={(6.2,0)}]
 \coordinate (C2) at (0,0);
 \foreach \k in {0,72,144,216,288}{
@@ -64,7 +57,6 @@ derivation of CKM/PMNS phases.
 }
 \draw[thick] (Q0) -- (Q72) -- (Q144) -- (Q216) -- (Q288) -- cycle;
 
-% loop arrow reversed direction
 \draw[very thick, -{Latex[length=3mm]}]
   ($(Q0)!0.55!(Q72)$) arc [start angle=18, end angle=-342, radius=1.05];
 
@@ -74,7 +66,8 @@ derivation of CKM/PMNS phases.
 \end{scope}
 
 \end{tikzpicture}
-\caption{\textbf{Toy holonomy picture for CP-sensitive phases.}
+\caption{\textbf{Schematic holonomy loop used to illustrate phase sensitivity under orientation reversal.} The diagram shows an abstract closed path and its transformation under inversion. The construction is illustrative and does not represent a physical trajectory or dynamical process.}
+The diagram shows an abstract closed path and its transformation under inversion. The construction is illustrative and does not represent a physical trajectory or dynamical process.}
 A loop $\gamma$ on a discrete local patch acquires a holonomy phase $W[\gamma]=\exp(i\Phi[\gamma])$.
 A vertex inversion along the local normal (origami ``pop-through'') reverses loop orientation without changing adjacency data, mapping $\gamma\mapsto\gamma^{-1}$ and hence $\Phi\mapsto -\Phi$.
 This provides a minimal schematic for why mass-like observables can remain invariant while CP-sensitive phases (through $\sin\delta$) change under an orientation reversal.

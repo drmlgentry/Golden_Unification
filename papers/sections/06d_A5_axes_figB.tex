@@ -1,7 +1,4 @@
-% ============================================================
-% 06d_A5_axes_figB.tex
-% Figure B: schematic A5 symmetry axes (icosa/dodeca intuition)
-% ============================================================
+
 
 \subsection{\texorpdfstring{$A_{5}$}{A5} as icosahedral/dodecahedral rotational symmetry: an intuitive axis picture}
 \label{subsec:A5_axes_picture_figB}
@@ -20,31 +17,25 @@ captures the group-theoretic content needed for a conservative narrative.
 \centering
 \begin{tikzpicture}[scale=1.0, >=Latex]
 
-% Outer circle: "polyhedron seen from outside"
 \draw[thick] (0,0) circle (2.2);
 
-% Representative symmetry axes
-% 5-fold axis
 \draw[very thick] (0,-2.2) -- (0,2.2);
 \node[align=center] at (0,2.55) {\small 5-fold axis};
 
-% 3-fold axis
 \draw[thick] ({-2.2*cos(30)},{-2.2*sin(30)}) -- ({2.2*cos(30)},{2.2*sin(30)});
 \node[align=center] at (2.6,1.3) {\small 3-fold};
 
-% 2-fold axis
 \draw[thick] ({-2.2*cos(90)},{-2.2*sin(90)}) -- ({2.2*cos(90)},{2.2*sin(90)});
 \node[align=center] at (2.8,0.0) {\small 2-fold};
 
-% A loop around the 5-fold axis
 \draw[very thick, -{Latex[length=3mm]}] (0.9,0.0) arc[start angle=0,end angle=330,radius=0.9];
 \node at (0.0,-0.9) {\small loop around 5-fold axis};
 
-% Label A5
 \node[align=center] at (0,-2.75) {\small $A_{5} \cong \mathrm{Rot}(\text{icosahedron/dodecahedron})$};
 
 \end{tikzpicture}
-\caption{\textbf{Geometric meaning of \(A_{5}\) structure (schematic).}
+\caption{\textbf{Schematic representation of \(A_{5}\) symmetry axes used for geometric visualization.} The figure illustrates the relative orientations of the discrete axes employed in the construction discussed in the text. No metric or dynamical information is encoded; the diagram serves only as a geometric reference for the labeling conventions.}\) symmetry axes used for geometric visualization.}
+The figure illustrates the relative orientations of the discrete axes employed in the construction discussed in the text. No metric or dynamical information is encoded; the diagram serves only as a geometric reference for the labeling conventions.}\) structure (schematic).}
 The group \(A_{5}\) is isomorphic to the orientation-preserving rotational symmetry group of the icosahedron/dodecahedron.
 This provides an intuitive geometric interpretation for ``\(A_{5}\)-structured'' residual symmetries:
 discrete 5-fold, 3-fold, and 2-fold axes organize admissible identifications.
