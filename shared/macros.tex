@@ -1,3 +1,13 @@
+% ============================================================
+% Bibliography backend: biblatex + biber
+% ============================================================
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{../shared/references.bib}
+
+\usepackage{amsmath,amssymb}
+% --- Graphics / TikZ ---
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.pathreplacing}
 % shared/macros.tex
 \providecommand{\Afive}{A_{5}}
 \providecommand{\golden}{\varphi} % optional standard name for \varphi
@@ -9,3 +19,21 @@
 \providecommand{\diag}{\mathrm{diag}}
 \providecommand{\SU}{\mathrm{SU}}
 \providecommand{\U}{\mathrm{U}}
+
+
+% ============================================================
+% GPP_DRAFT_SUPPRESS_WARNINGS
+% Draft-mode suppression of undefined reference warnings.
+% Toggle: set \GPPdrafttrue (on) / \GPPdraftfalse (off)
+% ============================================================
+\newif\ifGPPdraft
+\GPPdrafttrue
+
+\makeatletter
+\ifGPPdraft
+  % Suppress only warning emissions (keeps errors, overfull boxes, etc.)
+  \def\@latex@warning@no@line#1{}
+  \def\@latex@warning#1{}
+\fi
+\makeatother
+
