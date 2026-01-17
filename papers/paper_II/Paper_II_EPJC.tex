@@ -21,6 +21,33 @@
 \date{\today}
 
 \begin{document}
+
+% ============================================================
+% TRACK1_SCOPE_BLOCK (auto-inserted)
+% Relation to prior work and scope of present analysis
+% ============================================================
+\subsection{Relation to prior work and scope of the present analysis}
+\label{subsec:paper2_scope}
+
+This work is motivated by, but does not depend on, broader phenomenological studies of logarithmic regularities in fermion mass data. The present analysis does \emph{not} attempt to derive fermion masses from first principles, nor does it assume the existence of an underlying flavor symmetry or dynamical mechanism. Instead, we take as input a fixed empirical mass assignment and examine the internal consistency, numerical stability, and falsifiability of a proposed logarithmic mass relation under controlled variations.
+
+The only structural assumption inherited from prior work is the existence of a discrete mass-law ansatz of the form
+\[
+m_i = m_0 \, e^{\alpha n_i},
+\]
+where \(m_0\) and \(\alpha\) are fixed constants and \(n_i\) is an integer or half-integer index associated with each fermion species. In this paper, the parameters \((m_0,\alpha)\) are treated as \emph{empirical fit parameters}, not as quantities derived from symmetry arguments. No claims are made regarding the microscopic origin of this structure.
+
+The purpose of the present work is narrower and more technical. We focus on three questions:
+\begin{enumerate}
+  \item \textbf{Reproducibility:} Given a specified dataset and fitting protocol, are the reported mass-law assignments and residuals uniquely reproducible under independent implementation?
+  \item \textbf{Numerical stability:} How sensitive are the inferred assignments \(\{n_i\}\) and residual deviations to perturbations in the input masses and fitting tolerances?
+  \item \textbf{Falsifiability:} What quantitative criteria would definitively rule out the proposed mass relation, independent of interpretation?
+\end{enumerate}
+By isolating these questions, this paper is intended to stand as a self-contained numerical and methodological analysis. Any broader interpretive claimsâ€”geometric, symmetry-based, or otherwiseâ€”are explicitly outside the scope of the present work and are neither required nor assumed for the results reported here.
+
+% ============================================================
+% END TRACK1_SCOPE_BLOCK
+% ============================================================
 \maketitle
 
 \begin{abstract}
@@ -62,6 +89,15 @@ particle phenomenology; numerical methods; logarithmic scaling; reproducibility;
 \input{sections/06_reproducibility_protocol_appendix.tex}
 
 
+\section{Conclusion}
+
+We have presented a systematic numerical validation of the empirical fermion mass regularity reported in a companion study. The analysis was designed to assess reproducibility, numerical stability, and falsifiability, independent of interpretation or model assumptions.
+
+Using a fully deterministic fitting procedure and explicit conventions, we find that the reported mass–law assignments and residual structure are reproducible under independent implementation. Perturbations of the input masses within quoted experimental uncertainties do not generically destabilize the inferred assignments, though specific sensitivities are identified and quantified. These results demonstrate that the empirical pattern is not an artifact of numerical ambiguity or stochastic fitting.
+
+Equally important, we have articulated explicit criteria under which the proposed empirical relation would be falsified. These criteria depend only on numerical consistency and stability, not on interpretive assumptions. As such, they provide a clear basis for future tests as mass determinations are refined or extended.
+
+The present work does not establish a physical origin for the observed structure, nor does it argue for its inevitability. Instead, it ensures that the empirical claim under consideration is well defined, auditable, and meaningfully testable. In this sense, the paper serves as a technical complement to the primary empirical analysis, strengthening its scientific status by clarifying both its robustness and its limitations.
 \end{document}
 
 \printbibliography
