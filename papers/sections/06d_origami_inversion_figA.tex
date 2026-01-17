@@ -1,5 +1,5 @@
-
-
+\begin{figure}[t]
+\centering
 \subsection{Origami vertex inversion as an orientation reversal: a holonomy toy model}
 \label{subsec:origami_inversion_holonomy_figA}
 
@@ -22,55 +22,8 @@ This is the schematic mechanism by which CP-sensitive phases can change sign whi
 purely ``mass-like'' assignments (which do not depend on loop orientation) remain unchanged.
 We emphasize that this is a kinematic/topological illustration; it is not yet a microscopic
 derivation of CKM/PMNS phases.
-
-\begin{figure}[t]
-\centering
-\begin{tikzpicture}[scale=1.0, >=Latex]
-
-\coordinate (C) at (0,0);
-\foreach \k in {0,72,144,216,288}{
-  \coordinate (P\k) at ({1.6*cos(\k)},{1.6*sin(\k)});
+\caption{%
+\\textbf{Schematic holonomy loop used to illustrate phase sensitivity under orientation reversal.}
+The diagram shows an abstract closed path and its transformation under inversion. The construction is illustrative and does not represent a physical trajectory or dynamical process.
 }
-
-\foreach \k/\kp in {0/72,72/144,144/216,216/288,288/0}{
-  \draw[thick] (C) -- (P\k) -- (P\kp) -- cycle;
-}
-
-\draw[thick] (P0) -- (P72) -- (P144) -- (P216) -- (P288) -- cycle;
-
-\draw[very thick, -{Latex[length=3mm]}]
-  ($(P0)!0.55!(P72)$) arc [start angle=18, end angle=342, radius=1.05];
-
-\node at (0,-2.2) {\small (a) Local patch with loop $\gamma$};
-
-\draw[->, very thick] (2.6,0.0) -- (4.2,0.0);
-\node at (3.4,0.35) {\small inversion};
-\node at (3.4,-0.35) {\small $z \mapsto -z$};
-
-\begin{scope}[shift={(6.2,0)}]
-\coordinate (C2) at (0,0);
-\foreach \k in {0,72,144,216,288}{
-  \coordinate (Q\k) at ({1.6*cos(\k)},{1.6*sin(\k)});
-}
-\foreach \k/\kp in {0/72,72/144,144/216,216/288,288/0}{
-  \draw[thick] (C2) -- (Q\k) -- (Q\kp) -- cycle;
-}
-\draw[thick] (Q0) -- (Q72) -- (Q144) -- (Q216) -- (Q288) -- cycle;
-
-\draw[very thick, -{Latex[length=3mm]}]
-  ($(Q0)!0.55!(Q72)$) arc [start angle=18, end angle=-342, radius=1.05];
-
-\node at (0,-2.2) {\small (b) Orientation-reversed loop $\gamma^{-1}$};
-\node[align=center] at (0,2.15) {\small $W[\gamma]=e^{i\Phi[\gamma]}$\\[-1mm]
-\small $W[\gamma^{-1}]=e^{-i\Phi[\gamma]}$};
-\end{scope}
-
-\end{tikzpicture}
-\caption{\textbf{Schematic holonomy loop used to illustrate phase sensitivity under orientation reversal.} The diagram shows an abstract closed path and its transformation under inversion. The construction is illustrative and does not represent a physical trajectory or dynamical process.}
-The diagram shows an abstract closed path and its transformation under inversion. The construction is illustrative and does not represent a physical trajectory or dynamical process.}
-A loop $\gamma$ on a discrete local patch acquires a holonomy phase $W[\gamma]=\exp(i\Phi[\gamma])$.
-A vertex inversion along the local normal (origami ``pop-through'') reverses loop orientation without changing adjacency data, mapping $\gamma\mapsto\gamma^{-1}$ and hence $\Phi\mapsto -\Phi$.
-This provides a minimal schematic for why mass-like observables can remain invariant while CP-sensitive phases (through $\sin\delta$) change under an orientation reversal.
-}
-\label{fig:holonomy_inversion}
 \end{figure}
