@@ -2,7 +2,11 @@
 % Bibliography backend: biblatex + biber
 % ============================================================
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-\addbibresource{../shared/references.bib}
+
+% Guarded bibliography source (works for all papers)
+\IfFileExists{../shared/references.bib}{\addbibresource{../shared/references.bib}}{}
+\IfFileExists{../../shared/references.bib}{\addbibresource{../../shared/references.bib}}{}
+
 
 \usepackage{amsmath,amssymb}
 % --- Graphics / TikZ ---

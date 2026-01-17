@@ -1,4 +1,4 @@
-﻿\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
@@ -11,6 +11,10 @@
 
 % Shared macros (repo convention)
 \input{../../shared/macros.tex}
+
+% Paper II bibliography source
+\addbibresource{../../shared/references.bib}
+
 
 \title{Paper II: Encoding Map, Anchoring Conventions, and Bounded Scan Methodology}
 \author{Marvin Gentry}
@@ -57,7 +61,7 @@ particle phenomenology; numerical methods; logarithmic scaling; reproducibility;
 \input{sections/05_reproducibility_artifacts.tex}
 \input{sections/06_reproducibility_protocol_appendix.tex}
 
-\bibliographystyle{unsrt}
-\bibliography{../../shared/references}
 
 \end{document}
+
+\printbibliography
